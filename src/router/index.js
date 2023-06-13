@@ -16,12 +16,12 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/CartView.vue'),
+      component: () => import('../views/ProductCartView.vue'),
     },
     {
       path: '/confirm-order',
       name: 'confirm-order',
-      component: () => import('../views/ConfirmOrder.vue'),
+      component: () => import('../views/ProductConfirmOrder.vue'),
     },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView },
   ],

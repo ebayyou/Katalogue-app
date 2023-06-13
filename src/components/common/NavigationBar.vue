@@ -45,6 +45,7 @@ import { RouterLink } from 'vue-router';
     position: absolute;
     left: 0;
     right: 0;
+    max-width: 1536px;
     margin: 1rem auto;
     width: 95%;
     z-index: 10;

@@ -27,17 +27,23 @@ import ButtonPagnation from '../common/button/ButtonPagnation.vue';
   display: none;
 }
 
-@media screen and (min-width: 1024px) {
-  .product__wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 1.2em;
-    margin: 1rem auto;
-    width: 80%;
-  }
+.product__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2.5em;
+  margin: 1.35rem 0 6rem;
+}
 
+@media screen and (min-width: 768px) {
+  .product__wrapper {
+    width: 500px;
+    margin: 1rem auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
   .layout__product-wrapper {
     position: absolute;
     top: 0;
@@ -47,7 +53,7 @@ import ButtonPagnation from '../common/button/ButtonPagnation.vue';
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     align-items: center;
   }
 
@@ -71,14 +77,22 @@ import ButtonPagnation from '../common/button/ButtonPagnation.vue';
     width: 98%;
     margin: 0 auto;
   }
+
+  .product__wrapper {
+    width: 700px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .product__wrapper {
+    width: 80%;
     flex-direction: row;
   }
 
   .layout__product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 1224px;
     height: 637px;
   }
