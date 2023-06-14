@@ -184,6 +184,7 @@ const breadcrumbs = ref([
     border: 2px solid var(--primary-purple);
     border-radius: var(--radius-circle);
   }
+
   .product__price-desktop p {
     font-style: normal;
     font-weight: var(--font-semi-bold);

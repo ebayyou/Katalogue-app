@@ -46,6 +46,13 @@ defineProps({
   justify-content: space-between;
 }
 
+@media screen and (min-width: 550px) {
+  .button__group.opsi-2 {
+    width: 500px;
+    justify-content: space-between;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .wrapper__button {
     position: unset;

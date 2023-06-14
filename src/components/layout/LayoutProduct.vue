@@ -33,17 +33,24 @@ import ButtonPagnation from '../common/button/ButtonPagnation.vue';
   align-items: center;
   flex-direction: column;
   gap: 2.5em;
-  margin: 1.35rem 0 6rem;
+  margin: 1.35em 0 6em;
 }
 
 @media screen and (min-width: 768px) {
   .product__wrapper {
     width: 500px;
-    margin: 1rem auto;
+    margin: 1em auto;
   }
 }
 
 @media screen and (min-width: 1024px) {
+  .product__wrapper {
+    margin-top: 3em;
+    width: 700px;
+  }
+}
+
+@media screen and (min-width: 1250px) {
   .layout__product-wrapper {
     position: absolute;
     top: 0;
@@ -79,7 +86,7 @@ import ButtonPagnation from '../common/button/ButtonPagnation.vue';
   }
 
   .product__wrapper {
-    width: 700px;
+    margin: 1em auto;
   }
 }
 
