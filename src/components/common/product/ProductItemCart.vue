@@ -38,6 +38,10 @@ import ProductCartCount from './ProductCartCount.vue';
   width: 65px;
 }
 
+.product__info {
+  width: 75%;
+}
+
 .product__info h4 {
   font-style: normal;
   font-weight: var(--font-semi-bold);

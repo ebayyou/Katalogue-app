@@ -4,15 +4,22 @@ import { RouterLink } from 'vue-router';
 
 defineProps({
   name: String,
+  path: {
+    type: String,
+    default: '/',
+  },
+  withLogo: Boolean,
 });
 </script>
 
 <template>
   <nav class="application__bar">
-    <RouterLink to="/" class="bar">
+    <RouterLink :to="path" class="bar">
       <ArrowLeft2 :size="24" color="#fff" type="linear" />
     </RouterLink>
-    <h3>{{ name }}</h3>
+
+    <img v-if="withLogo" class="bar__logo" src="../../assets/Image/Logo Brand.svg" alt="logo-brand" />
+    <h2 v-else class="heading__text-gradient">{{ name }}</h2>
   </nav>
 </template>
 
@@ -33,16 +40,11 @@ defineProps({
   border-radius: 0px 5px 15px 0px;
 }
 
-.application__bar h3 {
-  font-style: normal;
-  font-weight: var(--font-semi-bold);
+.bar__logo {
+  width: 125px;
+}
+
+.application__bar h2 {
   font-size: 22px;
-  text-transform: capitalize;
-  line-height: 33px;
-  background: var(--gradient-logo);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
 }
 </style>

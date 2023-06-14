@@ -42,12 +42,18 @@ import { RouterLink } from 'vue-router';
 
 @media (min-width: 1024px) {
   .navigation {
+    margin: 1rem auto;
+    width: 95%;
+  }
+}
+
+@media (min-width: 1250px) {
+  .navigation {
     position: absolute;
     left: 0;
     right: 0;
     max-width: 1536px;
     margin: 1rem auto;
-    width: 95%;
     z-index: 10;
   }
 }

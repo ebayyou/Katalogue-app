@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import ProductsView from '../views/ProductsView.vue';
+import ProductCartView from '../views/ProductCartView.vue';
+import ProductConfirmOrder from '../views/ProductConfirmOrder.vue';
+import ProductGreetingView from '../views/ProductGreetingView.vue';
 import NotFoundView from '../views/NotFoundView.vue';
 
 const router = createRouter({
@@ -13,15 +16,17 @@ const router = createRouter({
     {
       path: '/cart-product',
       name: 'cart',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ProductCartView.vue'),
+      component: ProductCartView,
     },
     {
       path: '/confirm-order',
       name: 'confirm-order',
-      component: () => import('../views/ProductConfirmOrder.vue'),
+      component: ProductConfirmOrder,
+    },
+    {
+      path: '/greetings',
+      name: 'greetings',
+      component: ProductGreetingView,
     },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView },
   ],

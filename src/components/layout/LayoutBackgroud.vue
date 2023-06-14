@@ -9,7 +9,7 @@
 </template>
 
 <style scoped>
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1250px) {
   .layout__backgroud {
     position: relative;
     width: 100%;
