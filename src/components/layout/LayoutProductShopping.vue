@@ -1,6 +1,6 @@
 <script setup>
-import ApplicationBar from '../common/ApplicationBar.vue';
-import WrapperButton from '../common/button/WrapperButton.vue';
+import ApplicationBar from "../common/ApplicationBar.vue";
+import WrapperButton from "../common/button/WrapperButton.vue";
 
 defineProps({
   opsiButton: Number,
@@ -12,9 +12,16 @@ defineProps({
 </script>
 
 <template>
-  <section class="product__shopping-wrap" :class="type === 'modal' && 'w-modal'">
+  <section
+    class="product__shopping-wrap"
+    :class="type === 'modal' && 'w-modal'"
+  >
     <div class="product__shopping" :class="type === 'modal' && 'w-modal'">
-      <ApplicationBar :path="path" :name="headingBarName" withLogo />
+      <ApplicationBar
+        :path="path"
+        :name="headingBarName"
+        :withLogo="withLogo"
+      />
 
       <slot name="product-shopping-content"></slot>
 
@@ -67,9 +74,14 @@ defineProps({
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1250px) {
   .product__shopping {
     width: 570px;
+  }
+
+  .product__shopping.w-modal {
+    width: 600px;
+    height: 600px;
   }
 }
 </style>

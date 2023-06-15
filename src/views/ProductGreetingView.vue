@@ -1,15 +1,18 @@
 <script setup>
-import ButtonLinkTo from '../components/common/button/ButtonLinkTo.vue';
-import LayoutProductShopping from '../components/layout/LayoutProductShopping.vue';
+import ButtonLinkTo from "../components/common/button/ButtonLinkTo.vue";
+import LayoutProductShopping from "../components/layout/LayoutProductShopping.vue";
 </script>
 
 <template>
-  <LayoutProductShopping type="modal" withLogo :opsiButton="1">
+  <LayoutProductShopping type="modal" :withLogo="true" :opsiButton="1">
     <template #product-shopping-content>
       <div class="greeting-wrap">
         <div class="greeting">
           <h1 class="heading__text-gradient">Thanks For Order!!!</h1>
-          <p>please give feedback on our service. and don't forget to keep smiling (;</p>
+          <p>
+            please give feedback on our service. and don't forget to keep
+            smiling (;
+          </p>
         </div>
       </div>
     </template>
@@ -54,7 +57,22 @@ import LayoutProductShopping from '../components/layout/LayoutProductShopping.vu
 }
 @media screen and (min-width: 1024px) {
   .greeting-wrap {
-    height: 35vh;
+    height: 70%;
+  }
+}
+@media screen and (min-width: 1250px) {
+  .greeting-wrap {
+    height: 75%;
+  }
+}
+@media screen and (min-width: 1250px) {
+  .greeting-wrap {
+    height: 75%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .greeting-wrap {
+    height: 80%;
   }
 }
 </style>

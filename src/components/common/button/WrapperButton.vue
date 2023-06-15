@@ -4,11 +4,15 @@ defineProps({
     type: Number,
     default: 2,
   },
+  noBackground: String,
 });
 </script>
 
 <template>
-  <div class="wrapper__button" :class="opsi === 1 ? 'opsi-1' : 'opsi-2'">
+  <div
+    class="wrapper__button"
+    :class="(opsi === 1 ? 'opsi-1' : 'opsi-2', noBackground)"
+  >
     <div class="button__group" :class="opsi === 1 ? 'opsi-1' : 'opsi-2'">
       <slot name="button-opsi-1"></slot>
       <slot name="button-opsi-2"></slot>
@@ -32,8 +36,14 @@ defineProps({
   border-top: 1px solid rgba(50, 48, 50, 0.32);
 }
 
+.noBackground {
+  background-color: transparent;
+  border-top: none;
+}
+
 .button__group {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   width: 90%;
 }
@@ -56,7 +66,7 @@ defineProps({
 @media screen and (min-width: 1024px) {
   .wrapper__button {
     position: unset;
-    justify-content: flex-start;
+    justify-content: center;
     height: 65px;
     margin-top: 2em;
   }
@@ -69,7 +79,7 @@ defineProps({
   }
 
   .button__group.opsi-2 {
-    justify-content: flex-start;
+    justify-content: center;
     gap: 1.5em;
   }
 }

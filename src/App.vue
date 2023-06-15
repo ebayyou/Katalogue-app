@@ -1,30 +1,33 @@
 <script setup>
-import { RouterView } from 'vue-router';
-import { ref } from 'vue';
-import LayoutBackgroud from './components/layout/LayoutBackgroud.vue';
-import NavigationBar from './components/common/NavigationBar.vue';
-import BreadCrumbs from './components/common/BreadCrumbs.vue';
+import { RouterView } from "vue-router";
+import { ref } from "vue";
+import LayoutBackgroud from "./components/layout/LayoutBackgroud.vue";
+import NavigationBar from "./components/common/NavigationBar.vue";
+import BreadCrumbs from "./components/common/BreadCrumbs.vue";
+// import InitialLoadingUI from "./components/common/InitialLoadingUI.vue";
 
 const breadcrumbs = ref([
   {
     key: 1,
-    path: '/',
-    name: 'Katalogue',
+    path: "/",
+    name: "Katalogue",
   },
   {
     key: 2,
-    path: '/',
-    name: 'Product',
+    path: "/",
+    name: "Product",
   },
   {
     key: 3,
-    path: '/mens-catalog',
+    path: "/mens-catalog",
     name: "Men's Clothing",
   },
 ]);
 </script>
 
 <template>
+  <!-- <InitialLoadingUI /> -->
+
   <LayoutBackgroud>
     <template #navbar>
       <NavigationBar />

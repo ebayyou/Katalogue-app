@@ -19,7 +19,7 @@
   .layout__pattern {
     width: 100%;
     height: 50vh;
-    background: url('../../assets/Image/Backgroud-pattern.svg') center;
+    background: url("../../assets/Image/Backgroud-pattern.svg") center;
   }
 }
 </style>
