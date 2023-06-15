@@ -1,27 +1,28 @@
 <script setup>
-import { ref } from 'vue';
-import WrapperButton from '../components/common/button/WrapperButton.vue';
-import ButtonAction from '../components/common/button/ButtonAction.vue';
-import ButtonPagnation from '../components/common/button/ButtonPagnation.vue';
-import BreadCrumbs from '../components/common/BreadCrumbs.vue';
-import ProductRating from '../components/common/product/ProductRating.vue';
-import ProductReview from '../components/common/product/ProductReview.vue';
-import LayoutProduct from '../components/layout/LayoutProduct.vue';
+import { ref } from "vue";
+import { RouterView } from "vue-router";
+import WrapperButton from "../components/common/button/WrapperButton.vue";
+import ButtonAction from "../components/common/button/ButtonAction.vue";
+import ButtonPagnation from "../components/common/button/ButtonPagnation.vue";
+import BreadCrumbs from "../components/common/BreadCrumbs.vue";
+import ProductRating from "../components/common/product/ProductRating.vue";
+import ProductReview from "../components/common/product/ProductReview.vue";
+import LayoutProduct from "../components/layout/LayoutProduct.vue";
 
 const breadcrumbs = ref([
   {
     key: 1,
-    path: '/',
-    name: 'Katalogue',
+    path: "/",
+    name: "Katalogue",
   },
   {
     key: 2,
-    path: '/',
-    name: 'Product',
+    path: "/",
+    name: "Product",
   },
   {
     key: 3,
-    path: '/mens-catalog',
+    path: "/mens-catalog",
     name: "Men's Clothing",
   },
 ]);
@@ -31,7 +32,11 @@ const breadcrumbs = ref([
   <LayoutProduct>
     <template #left-product>
       <div class="left-product">
-        <img class="product__img" src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="product" />
+        <img
+          class="product__img"
+          src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+          alt="product"
+        />
       </div>
     </template>
     <template #right-product>
@@ -41,7 +46,9 @@ const breadcrumbs = ref([
         </div>
 
         <div>
-          <h1 class="product__heading">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h1>
+          <h1 class="product__heading">
+            Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops
+          </h1>
           <div class="product__group group__gap">
             <ProductRating />
             <ProductReview />
@@ -49,7 +56,10 @@ const breadcrumbs = ref([
           <div class="product__category">
             <h3>men's clothing</h3>
           </div>
-          <p class="product__desc">Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday</p>
+          <p class="product__desc">
+            Your perfect pack for everyday use and walks in the forest. Stash
+            your laptop (up to 15 inches) in the padded sleeve, your everyday
+          </p>
           <p class="product__price-mobile">$123</p>
         </div>
 
@@ -71,6 +81,8 @@ const breadcrumbs = ref([
       </div>
     </template>
   </LayoutProduct>
+
+  <RouterView />
 </template>
 
 <style>

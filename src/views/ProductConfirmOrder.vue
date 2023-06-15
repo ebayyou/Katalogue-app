@@ -1,15 +1,19 @@
 <script setup>
-import ButtonLinkTo from '../components/common/button/ButtonLinkTo.vue';
-import BillItem from '../components/common/product/BillItem.vue';
-import ProductConfirmItem from '../components/common/product/ProductConfirmItem.vue';
-import ProductConfirmListItem from '../components/common/product/ProductConfirmListItem.vue';
-import LayoutProductShopping from '../components/layout/LayoutProductShopping.vue';
+import ButtonLinkTo from "../components/common/button/ButtonLinkTo.vue";
+import BillItem from "../components/common/product/BillItem.vue";
+import ProductConfirmItem from "../components/common/product/ProductConfirmItem.vue";
+import ProductConfirmListItem from "../components/common/product/ProductConfirmListItem.vue";
+import LayoutProductShopping from "../components/layout/LayoutProductShopping.vue";
 </script>
 
 <template>
-  <LayoutProductShopping path="/cart-product" :opsiButton="2" headingBarName="Order Summary">
+  <LayoutProductShopping
+    path="/cart-product"
+    :opsiButton="2"
+    headingBarName="Order Summary"
+  >
     <template #product-shopping-content>
-      <div class="product__confirm">
+      <div class="product__wrapper-list">
         <div class="confirm__group">
           <h3>#441122</h3>
 
@@ -50,7 +54,11 @@ import LayoutProductShopping from '../components/layout/LayoutProductShopping.vu
 
     <template #button-group>
       <ButtonLinkTo to="/" action="Cancel" />
-      <ButtonLinkTo to="/greetings" iconName="ReceiptItem" action="Confirm Order" />
+      <ButtonLinkTo
+        to="/products/greetings"
+        iconName="ReceiptItem"
+        action="Confirm Order"
+      />
       <!-- <ButtonAction iconName="ReceiptItem" action="Confirm Order" /> -->
     </template>
   </LayoutProductShopping>

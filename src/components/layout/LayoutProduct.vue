@@ -1,5 +1,12 @@
 <script setup>
-import ButtonPagnation from '../common/button/ButtonPagnation.vue';
+import ButtonPagnation from "../common/button/ButtonPagnation.vue";
+
+defineProps({
+  type: {
+    type: String,
+    default: "",
+  },
+});
 </script>
 
 <template>
@@ -10,7 +17,12 @@ import ButtonPagnation from '../common/button/ButtonPagnation.vue';
         <ButtonPagnation iconName="ArrowRight2" />
       </div>
 
-      <div class="product__wrapper">
+      <slot name="error-product"></slot>
+
+      <div
+        class="product__wrapper"
+        :class="type === 'errorLayout' && 'errorLayout'"
+      >
         <slot name="left-product"></slot>
         <slot name="right-product"></slot>
       </div>
@@ -34,6 +46,9 @@ import ButtonPagnation from '../common/button/ButtonPagnation.vue';
   flex-direction: column;
   gap: 2.5em;
   margin: 1.35em 0 6em;
+}
+.product__wrapper.errorLayout {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {

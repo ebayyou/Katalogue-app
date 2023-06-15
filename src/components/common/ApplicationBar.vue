@@ -1,14 +1,17 @@
 <script setup>
-import { ArrowLeft2 } from 'vue-iconsax';
-import { RouterLink } from 'vue-router';
+import { ArrowLeft2 } from "vue-iconsax";
+import { RouterLink } from "vue-router";
 
 defineProps({
   name: String,
   path: {
     type: String,
-    default: '/',
+    default: "/",
   },
-  withLogo: Boolean,
+  withLogo: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
@@ -18,7 +21,12 @@ defineProps({
       <ArrowLeft2 :size="24" color="#fff" type="linear" />
     </RouterLink>
 
-    <img v-if="withLogo" class="bar__logo" src="../../assets/Image/Logo Brand.svg" alt="logo-brand" />
+    <img
+      v-if="withLogo"
+      class="bar__logo"
+      src="../../assets/Image/Logo Brand.svg"
+      alt="logo-brand"
+    />
     <h2 v-else class="heading__text-gradient">{{ name }}</h2>
   </nav>
 </template>
