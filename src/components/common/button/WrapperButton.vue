@@ -36,11 +36,6 @@ defineProps({
   border-top: 1px solid rgba(50, 48, 50, 0.32);
 }
 
-.noBackground {
-  background-color: transparent;
-  border-top: none;
-}
-
 .button__group {
   display: flex;
   flex-wrap: wrap;
@@ -81,6 +76,11 @@ defineProps({
   .button__group.opsi-2 {
     justify-content: center;
     gap: 1.5em;
+  }
+
+  .noBackground {
+    background-color: transparent;
+    border-top: none;
   }
 }
 

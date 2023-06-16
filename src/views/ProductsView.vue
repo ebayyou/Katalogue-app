@@ -1,14 +1,14 @@
 <script setup>
 import { ref } from "vue";
 import { RouterView } from "vue-router";
-// import WrapperButton from "../components/common/button/WrapperButton.vue";
-// import ButtonAction from "../components/common/button/ButtonAction.vue";
-// import ButtonPagnation from "../components/common/button/ButtonPagnation.vue";
-// import BreadCrumbs from "../components/common/BreadCrumbs.vue";
-// import ProductRating from "../components/common/product/ProductRating.vue";
-// import ProductReview from "../components/common/product/ProductReview.vue";
-// import LayoutProduct from "../components/layout/LayoutProduct.vue";
-import SkeletonUI from "../components/common/SkeletonUI.vue";
+import WrapperButton from "../components/common/button/WrapperButton.vue";
+import ButtonAction from "../components/common/button/ButtonAction.vue";
+import ButtonPagnation from "../components/common/button/ButtonPagnation.vue";
+import BreadCrumbs from "../components/common/BreadCrumbs.vue";
+import ProductRating from "../components/common/product/ProductRating.vue";
+import ProductReview from "../components/common/product/ProductReview.vue";
+import LayoutProduct from "../components/layout/LayoutProduct.vue";
+// import SkeletonUI from "../components/common/SkeletonUI.vue";
 
 const breadcrumbs = ref([
   {
@@ -30,9 +30,9 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-  <SkeletonUI />
+  <!-- <SkeletonUI /> -->
 
-  <!-- <LayoutProduct>
+  <LayoutProduct>
     <template #left-product>
       <div class="left-product">
         <img
@@ -83,7 +83,7 @@ const breadcrumbs = ref([
         </WrapperButton>
       </div>
     </template>
-  </LayoutProduct> -->
+  </LayoutProduct>
 
   <RouterView />
 </template>

@@ -3,7 +3,10 @@ import { vsxIcon } from "vue-iconsax";
 
 defineProps({
   iconName: String,
-  type: String,
+  type: {
+    type: String,
+    default: "",
+  },
 });
 </script>
 
@@ -15,7 +18,7 @@ defineProps({
     "
   >
     <vsx-icon
-      v-show="!type"
+      v-show="type !== 'skeleton'"
       :iconName="iconName"
       :size="24"
       color="#ffffff"
@@ -34,10 +37,10 @@ defineProps({
 .button__pagnation.skeleton {
   animation: skeleton-loading 1s linear infinite alternate;
 }
-.pagnation-left {
+.button__pagnation.pagnation-left {
   border-radius: 5px 0px 0px 5px;
 }
-.pagnation-right {
+.button__pagnation.pagnation-right {
   border-radius: 0px 5px 5px 0px;
 }
 </style>

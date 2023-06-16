@@ -57,13 +57,17 @@ defineProps({
   text-align: center;
   width: 80%;
 }
-.error__group h1 {
+
+.error__info {
+  width: 100%;
+}
+.error__info h1 {
   font-style: normal;
   font-weight: var(--font-semi-bold);
   font-size: 80px;
   line-height: 120px;
 }
-.error__group p {
+.error__info p {
   font-style: normal;
   font-weight: var(--font-regular);
   font-size: 20px;
@@ -86,6 +90,10 @@ defineProps({
     justify-content: center;
     align-items: center;
   }
+
+  .error__info {
+    width: 60%;
+  }
 }
 
 @media screen and (min-width: 1250px) {
@@ -100,12 +108,13 @@ defineProps({
 
 @media screen and (min-width: 1440px) {
   .error__wrapper {
-    position: relative;
     width: 80%;
   }
 
   .error__group {
+    position: relative;
     width: 60%;
+    height: 60%;
   }
 }
 </style>

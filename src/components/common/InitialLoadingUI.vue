@@ -46,18 +46,19 @@
   justify-content: center;
   align-items: center;
   gap: 0.8em;
-  width: 80%;
+  width: 70%;
 }
 
 .loading__bar {
   width: 85%;
   background: var(--white);
   border-radius: 20px;
-  padding: 5px;
+  padding: 3px;
 }
 
 .loading__stick {
-  width: 142px;
+  width: 40%;
+  height: 18px;
   height: 20px;
   border-radius: 20px 0px 0px 20px;
   background: var(--gradient-logo);
@@ -66,6 +67,15 @@
 @media screen and (min-width: 500px) {
   .loading__group {
     width: 286px;
+  }
+  .loading__stick {
+    height: 20px;
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  .loading__bar {
+    width: 100%;
   }
 }
 </style>

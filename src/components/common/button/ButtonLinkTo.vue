@@ -28,7 +28,7 @@ defineProps({
 <style scoped>
 .button__linkto {
   display: block;
-  width: 155px;
+  width: 145px;
   height: 44px;
   border: 2px solid var(--primary-purple);
   border-radius: var(--radius-circle);
@@ -41,5 +41,11 @@ defineProps({
   text-align: center;
   line-height: 40px;
   color: var(--primary-purple);
+}
+
+@media screen and (min-width: 600px) {
+  .button__linkto {
+    width: 155px;
+  }
 }
 </style>
