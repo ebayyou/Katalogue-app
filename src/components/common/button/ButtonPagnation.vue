@@ -1,14 +1,26 @@
 <script setup>
-import { vsxIcon } from 'vue-iconsax';
+import { vsxIcon } from "vue-iconsax";
 
 defineProps({
   iconName: String,
+  type: String,
 });
 </script>
 
 <template>
-  <button class="button__pagnation" :class="iconName === 'ArrowLeft2' ? 'pagnation-left' : 'pagnation-right'">
-    <vsx-icon :iconName="iconName" :size="24" color="#ffffff" type="linear" />
+  <button
+    class="button__pagnation"
+    :class="
+      (iconName === 'ArrowLeft2' ? 'pagnation-left' : 'pagnation-right', type)
+    "
+  >
+    <vsx-icon
+      v-show="!type"
+      :iconName="iconName"
+      :size="24"
+      color="#ffffff"
+      type="linear"
+    />
   </button>
 </template>
 
@@ -18,6 +30,9 @@ defineProps({
   height: 50px;
   background: var(--primary-purple);
   border: none;
+}
+.button__pagnation.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
 }
 .pagnation-left {
   border-radius: 5px 0px 0px 5px;

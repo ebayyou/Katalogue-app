@@ -13,8 +13,8 @@ defineProps({
   <main class="layout__product-wrapper">
     <section class="layout__product">
       <div class="layout__button">
-        <ButtonPagnation iconName="ArrowLeft2" />
-        <ButtonPagnation iconName="ArrowRight2" />
+        <ButtonPagnation :type="type" iconName="ArrowLeft2" />
+        <ButtonPagnation :type="type" iconName="ArrowRight2" />
       </div>
 
       <slot name="error-product"></slot>

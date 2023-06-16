@@ -37,6 +37,15 @@
   color: var(--white);
 }
 
+@keyframes skeleton-loading {
+  0% {
+    background-color: #d5e3e560;
+  }
+  100% {
+    background-color: var(--neutral-light-blue);
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .button__action {
     width: 200px;
