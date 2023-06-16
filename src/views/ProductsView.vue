@@ -8,6 +8,7 @@ import BreadCrumbs from "../components/common/BreadCrumbs.vue";
 import ProductRating from "../components/common/product/ProductRating.vue";
 import ProductReview from "../components/common/product/ProductReview.vue";
 import LayoutProduct from "../components/layout/LayoutProduct.vue";
+// import SkeletonUI from "../components/common/SkeletonUI.vue";
 
 const breadcrumbs = ref([
   {
@@ -29,6 +30,8 @@ const breadcrumbs = ref([
 </script>
 
 <template>
+  <!-- <SkeletonUI /> -->
+
   <LayoutProduct>
     <template #left-product>
       <div class="left-product">

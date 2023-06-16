@@ -8,7 +8,7 @@ import LayoutProductShopping from "../components/layout/LayoutProductShopping.vu
 
 <template>
   <LayoutProductShopping
-    path="/cart-product"
+    path="/products/cart-product"
     :opsiButton="2"
     headingBarName="Order Summary"
   >
