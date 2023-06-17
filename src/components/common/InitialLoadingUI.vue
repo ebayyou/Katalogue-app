@@ -59,7 +59,6 @@
 .loading__stick {
   width: 40%;
   height: 18px;
-  height: 20px;
   border-radius: 20px 0px 0px 20px;
   background: var(--gradient-logo);
 }

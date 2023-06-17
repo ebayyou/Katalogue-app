@@ -1,5 +1,8 @@
 <script setup>
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
+import { storeToRefs } from "pinia";
+import useProductStore from "../stores/product";
+import useCountProductStore from "../stores/countProduct";
 import { RouterView } from "vue-router";
 import WrapperButton from "../components/common/button/WrapperButton.vue";
 import ButtonAction from "../components/common/button/ButtonAction.vue";
@@ -8,7 +11,17 @@ import BreadCrumbs from "../components/common/BreadCrumbs.vue";
 import ProductRating from "../components/common/product/ProductRating.vue";
 import ProductReview from "../components/common/product/ProductReview.vue";
 import LayoutProduct from "../components/layout/LayoutProduct.vue";
-// import SkeletonUI from "../components/common/SkeletonUI.vue";
+import SkeletonUI from "../components/common/SkeletonUI.vue";
+
+const productStore = useProductStore();
+const countProductStore = useCountProductStore();
+const { product, loading } = storeToRefs(productStore);
+const { countProduct } = storeToRefs(countProductStore);
+console.log(countProduct);
+
+onBeforeMount(() => {
+  productStore.getProductByCount(countProduct);
+});
 
 const breadcrumbs = ref([
   {
@@ -27,19 +40,23 @@ const breadcrumbs = ref([
     name: "Men's Clothing",
   },
 ]);
+
+const pagnationNextProduct = () => {
+  countProductStore.nextProductCount();
+};
+
+const pagnationPreviousProduct = () => {
+  countProductStore.previousProductCount();
+};
 </script>
 
 <template>
-  <!-- <SkeletonUI /> -->
+  <SkeletonUI v-if="loading" />
 
-  <LayoutProduct>
+  <LayoutProduct v-else>
     <template #left-product>
       <div class="left-product">
-        <img
-          class="product__img"
-          src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-          alt="product"
-        />
+        <img class="product__img" :src="product.image" :alt="product.title" />
       </div>
     </template>
     <template #right-product>
@@ -49,21 +66,16 @@ const breadcrumbs = ref([
         </div>
 
         <div>
-          <h1 class="product__heading">
-            Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops
-          </h1>
+          <h1 class="product__heading">{{ product.title }}</h1>
           <div class="product__group group__gap">
-            <ProductRating />
-            <ProductReview />
+            <ProductRating :rating="product.rating.rate" />
+            <ProductReview :count="product.rating.count" />
           </div>
           <div class="product__category">
-            <h3>men's clothing</h3>
+            <h3>{{ product.category }}</h3>
           </div>
-          <p class="product__desc">
-            Your perfect pack for everyday use and walks in the forest. Stash
-            your laptop (up to 15 inches) in the padded sleeve, your everyday
-          </p>
-          <p class="product__price-mobile">$123</p>
+          <p class="product__desc">{{ product.description }}</p>
+          <p class="product__price-mobile">${{ product.price }}</p>
         </div>
 
         <WrapperButton :opsi="2">
@@ -72,12 +84,18 @@ const breadcrumbs = ref([
           </template>
           <template #button-opsi-2>
             <div class="product__price-desktop">
-              <p>$123.5</p>
+              <p>${{ product.price }}</p>
             </div>
 
             <div class="product__group group__gap product__group-mobile">
-              <ButtonPagnation iconName="ArrowLeft2" />
-              <ButtonPagnation iconName="ArrowRight2" />
+              <ButtonPagnation
+                :pagnationEvent="pagnationPreviousProduct"
+                iconName="ArrowLeft2"
+              />
+              <ButtonPagnation
+                :pagnationEvent="pagnationNextProduct"
+                iconName="ArrowRight2"
+              />
             </div>
           </template>
         </WrapperButton>
