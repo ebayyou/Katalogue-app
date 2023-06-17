@@ -1,5 +1,9 @@
 <script setup>
-import { Star1 } from 'vue-iconsax';
+import { Star1 } from "vue-iconsax";
+
+defineProps({
+  rating: Number,
+});
 </script>
 
 <template>
@@ -11,7 +15,7 @@ import { Star1 } from 'vue-iconsax';
       <Star1 class="icon-product" color="#FFB039" type="linear" />
       <Star1 class="icon-product" color="#FFB039" type="linear" />
     </div>
-    <h5 class="product__text">3.9</h5>
+    <h5 class="product__text">{{ rating }}</h5>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <script setup>
-import { RouterView } from "vue-router";
 import { ref } from "vue";
+import { RouterView } from "vue-router";
 import LayoutBackgroud from "./components/layout/LayoutBackgroud.vue";
 import NavigationBar from "./components/common/NavigationBar.vue";
 import BreadCrumbs from "./components/common/BreadCrumbs.vue";

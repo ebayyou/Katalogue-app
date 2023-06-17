@@ -7,12 +7,14 @@ defineProps({
     type: String,
     default: "",
   },
+  pagnationEvent: Function,
 });
 </script>
 
 <template>
   <button
     class="button__pagnation"
+    @click="pagnationEvent"
     :class="
       (iconName === 'ArrowLeft2' ? 'pagnation-left' : 'pagnation-right', type)
     "
