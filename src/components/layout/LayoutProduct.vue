@@ -6,6 +6,8 @@ defineProps({
     type: String,
     default: "",
   },
+  pagnationNext: Function,
+  pagnationPrevious: Function,
 });
 </script>
 
@@ -13,8 +15,16 @@ defineProps({
   <main class="layout__product-wrapper">
     <section class="layout__product">
       <div class="layout__button">
-        <ButtonPagnation :type="type" iconName="ArrowLeft2" />
-        <ButtonPagnation :type="type" iconName="ArrowRight2" />
+        <ButtonPagnation
+          :type="type"
+          :pagnationEvent="pagnationPrevious"
+          iconName="ArrowLeft2"
+        />
+        <ButtonPagnation
+          :type="type"
+          :pagnationEvent="pagnationNext"
+          iconName="ArrowRight2"
+        />
       </div>
 
       <slot name="error-product"></slot>

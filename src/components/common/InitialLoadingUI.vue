@@ -37,7 +37,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("../../assets/Image/Backgroud-pattern.svg") center;
+  background: url("../../assets/Image/Background-pattern.svg") center;
 }
 
 .loading__group {

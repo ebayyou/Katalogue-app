@@ -6,6 +6,7 @@ const useProductStore = defineStore("product", () => {
   // state
   const product = ref(null);
   const loading = ref(true);
+  const backgroundProduct = ref("");
 
   // action
   const getProductByCount = async (count) => {
@@ -21,7 +22,17 @@ const useProductStore = defineStore("product", () => {
     }
   };
 
-  return { product, loading, getProductByCount };
+  const setBackgroundProduct = (category) => {
+    backgroundProduct.value = category;
+  };
+
+  return {
+    product,
+    backgroundProduct,
+    loading,
+    getProductByCount,
+    setBackgroundProduct,
+  };
 });
 
 export default useProductStore;
