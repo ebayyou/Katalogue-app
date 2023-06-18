@@ -6,6 +6,19 @@
   font-weight: normal;
 }
 
+.men-clothing {
+  background: var(--gradient-men);
+}
+.women-clothing {
+  background: var(--gradient-women);
+}
+.electronics {
+  background: var(--gradient-404);
+}
+.jewelery {
+  background: var(--gradient-404);
+}
+
 a,
 .green {
   text-decoration: none;
@@ -67,9 +80,23 @@ a,
     padding: 0;
   }
 }
+@media screen and (min-width: 1250px) {
+  .men-clothing-lg {
+    background: var(--gradient-men);
+  }
+  .women-clothing-lg {
+    background: var(--gradient-women);
+  }
+  .electronics-lg {
+    background: var(--gradient-404);
+  }
+  .jewelery-lg {
+    background: var(--gradient-404);
+  }
+}
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: var(--primary-pink);
   }
 }

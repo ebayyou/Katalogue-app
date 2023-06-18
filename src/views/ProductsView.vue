@@ -1,9 +1,10 @@
 <script setup>
 import { onBeforeMount, ref } from "vue";
+import { computed } from "@vue/reactivity";
 import { storeToRefs } from "pinia";
+import { useRouter, useRoute, RouterView } from "vue-router";
 import useProductStore from "../stores/product";
 import useCountProductStore from "../stores/countProduct";
-import { RouterView } from "vue-router";
 import WrapperButton from "../components/common/button/WrapperButton.vue";
 import ButtonAction from "../components/common/button/ButtonAction.vue";
 import ButtonPagnation from "../components/common/button/ButtonPagnation.vue";
@@ -15,12 +16,20 @@ import SkeletonUI from "../components/common/SkeletonUI.vue";
 
 const productStore = useProductStore();
 const countProductStore = useCountProductStore();
-const { product, loading } = storeToRefs(productStore);
+const router = useRouter();
+const route = useRoute();
+
+const { product, loading, backgroundProduct } = storeToRefs(productStore);
 const { countProduct } = storeToRefs(countProductStore);
-console.log(countProduct);
+let category = null;
 
 onBeforeMount(() => {
-  productStore.getProductByCount(countProduct);
+  const id = route.params.id ? route.params.id : countProduct.value;
+  if (route.params.id) countProductStore.updateCountByParamsId(id);
+
+  productStore.getProductByCount(id);
+  category = computed(() => product.value.category.split("'s ").join("-"));
+  productStore.setBackgroundProduct(category);
 });
 
 const breadcrumbs = ref([
@@ -43,17 +52,29 @@ const breadcrumbs = ref([
 
 const pagnationNextProduct = () => {
   countProductStore.nextProductCount();
+  productStore.getProductByCount(countProduct.value);
+  productStore.setBackgroundProduct(category);
+
+  router.push(`/products/${countProduct.value}`);
 };
 
 const pagnationPreviousProduct = () => {
   countProductStore.previousProductCount();
+  productStore.getProductByCount(countProduct.value);
+  productStore.setBackgroundProduct(category);
+
+  router.push(`/products/${countProduct.value}`);
 };
 </script>
 
 <template>
   <SkeletonUI v-if="loading" />
 
-  <LayoutProduct v-else>
+  <LayoutProduct
+    v-else
+    :pagnationPrevious="pagnationPreviousProduct"
+    :pagnationNext="pagnationNextProduct"
+  >
     <template #left-product>
       <div class="left-product">
         <img class="product__img" :src="product.image" :alt="product.title" />
@@ -71,7 +92,7 @@ const pagnationPreviousProduct = () => {
             <ProductRating :rating="product.rating.rate" />
             <ProductReview :count="product.rating.count" />
           </div>
-          <div class="product__category">
+          <div class="product__category" :class="backgroundProduct.value">
             <h3>{{ product.category }}</h3>
           </div>
           <p class="product__desc">{{ product.description }}</p>
@@ -108,6 +129,9 @@ const pagnationPreviousProduct = () => {
 
 <style>
 .left-product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 240px;
   height: 350px;
   margin: 0 auto;
@@ -145,7 +169,6 @@ const pagnationPreviousProduct = () => {
   width: 180px;
   height: 45px;
   margin: 1.6em 0 0.65em;
-  background: var(--gradient-men);
   border-radius: var(--radius-sm);
 }
 
@@ -183,7 +206,7 @@ const pagnationPreviousProduct = () => {
 @media screen and (min-width: 1024px) {
   .left-product {
     width: 320px;
-    height: 457px;
+    height: 510px;
   }
 
   .icon-product {
@@ -193,6 +216,7 @@ const pagnationPreviousProduct = () => {
 
   .product__category {
     display: block;
+    width: 50%;
     background: transparent;
   }
 
@@ -228,7 +252,6 @@ const pagnationPreviousProduct = () => {
   }
 
   .product__desc {
-    width: 80%;
     font-size: var(--fs-text-lg);
     line-height: 30px;
   }
@@ -251,8 +274,10 @@ const pagnationPreviousProduct = () => {
   }
 
   .product__desc {
-    width: 70%;
+    width: 90%;
+    height: 180px;
     margin-bottom: 0;
+    overflow: hidden;
   }
 }
 </style>

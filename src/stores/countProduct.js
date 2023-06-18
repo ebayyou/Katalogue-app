@@ -1,21 +1,31 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 
-const useCountProductStore = defineStore("product", () => {
+const useCountProductStore = defineStore("countProduct", () => {
   // state
   const countProduct = ref(1);
 
   // action
   const nextProductCount = () => {
-    if (countProduct === 20) countProduct.value = 1;
+    if (countProduct.value === 20) countProduct.value = 0;
     countProduct.value++;
   };
+
   const previousProductCount = () => {
-    if (countProduct === 1) countProduct.value = 20;
+    if (countProduct.value === 1) countProduct.value = 21;
     countProduct.value--;
   };
 
-  return { countProduct, nextProductCount, previousProductCount };
+  const updateCountByParamsId = (id) => {
+    countProduct.value = id;
+  };
+
+  return {
+    countProduct,
+    nextProductCount,
+    previousProductCount,
+    updateCountByParamsId,
+  };
 });
 
 export default useCountProductStore;
