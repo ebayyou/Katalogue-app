@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount } from "vue";
 import { computed } from "@vue/reactivity";
 import { storeToRefs } from "pinia";
 import { useRouter, useRoute, RouterView } from "vue-router";
@@ -13,42 +13,27 @@ import ProductRating from "../components/common/product/ProductRating.vue";
 import ProductReview from "../components/common/product/ProductReview.vue";
 import LayoutProduct from "../components/layout/LayoutProduct.vue";
 import SkeletonUI from "../components/common/SkeletonUI.vue";
+import ErrorUI from "../components/common/ErrorUI.vue";
+
+defineEmits(["pointerenter", "pointerleave"]);
 
 const productStore = useProductStore();
 const countProductStore = useCountProductStore();
 const router = useRouter();
 const route = useRoute();
 
-const { product, loading, backgroundProduct } = storeToRefs(productStore);
+const { product, isLoading, isAvailableProduct, backgroundProduct } =
+  storeToRefs(productStore);
 const { countProduct } = storeToRefs(countProductStore);
-let category = null;
+const category = computed(() => product.value?.category.split("'s ").join("-"));
 
 onBeforeMount(() => {
   const id = route.params.id ? route.params.id : countProduct.value;
   if (route.params.id) countProductStore.updateCountByParamsId(id);
 
   productStore.getProductByCount(id);
-  category = computed(() => product.value.category.split("'s ").join("-"));
   productStore.setBackgroundProduct(category);
 });
-
-const breadcrumbs = ref([
-  {
-    key: 1,
-    path: "/",
-    name: "Katalogue",
-  },
-  {
-    key: 2,
-    path: "/",
-    name: "Product",
-  },
-  {
-    key: 3,
-    path: "/mens-catalog",
-    name: "Men's Clothing",
-  },
-]);
 
 const pagnationNextProduct = () => {
   countProductStore.nextProductCount();
@@ -68,10 +53,24 @@ const pagnationPreviousProduct = () => {
 </script>
 
 <template>
-  <SkeletonUI v-if="loading" />
+  <SkeletonUI v-if="isLoading" />
 
   <LayoutProduct
-    v-else
+    v-if="!isLoading && !isAvailableProduct"
+    type="errorLayout"
+    :pagnationPrevious="pagnationPreviousProduct"
+    :pagnationNext="pagnationNextProduct"
+  >
+    <template #error-product>
+      <ErrorUI
+        :errorCode="404"
+        errorMsg="Sorry, This product is unavailable to show"
+      />
+    </template>
+  </LayoutProduct>
+
+  <LayoutProduct
+    v-if="!isLoading && isAvailableProduct"
     :pagnationPrevious="pagnationPreviousProduct"
     :pagnationNext="pagnationNextProduct"
   >
@@ -83,7 +82,7 @@ const pagnationPreviousProduct = () => {
     <template #right-product>
       <div class="right-product">
         <div class="product__breadcrumbs">
-          <BreadCrumbs :breadcrumbs="breadcrumbs" />
+          <BreadCrumbs />
         </div>
 
         <div>
