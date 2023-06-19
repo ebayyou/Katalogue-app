@@ -87,9 +87,6 @@ a,
   .unvailable-product-lg {
     background: var(--gradient-404);
   }
-  .undefined-lg {
-    background: var(--gradient-404);
-  }
 }
 
 @media (hover: hover) {

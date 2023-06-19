@@ -25,7 +25,11 @@ const route = useRoute();
 const { product, isLoading, isAvailableProduct, backgroundProduct } =
   storeToRefs(productStore);
 const { countProduct } = storeToRefs(countProductStore);
-const category = computed(() => product.value?.category.split("'s ").join("-"));
+const category = computed(() =>
+  isAvailableProduct.value
+    ? product.value?.category.split("'s ").join("-")
+    : "unvailable-product"
+);
 
 onBeforeMount(() => {
   const id = route.params.id ? route.params.id : countProduct.value;
@@ -50,6 +54,8 @@ const pagnationPreviousProduct = () => {
 
   router.push(`/products/${countProduct.value}`);
 };
+
+const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
 </script>
 
 <template>
@@ -100,7 +106,11 @@ const pagnationPreviousProduct = () => {
 
         <WrapperButton :opsi="2">
           <template #button-opsi-1>
-            <ButtonAction iconName="ShoppingCart" action="Add to Cart" />
+            <ButtonAction
+              :handlerEvent="addProductToCart"
+              iconName="ShoppingCart"
+              action="Add to Cart"
+            />
           </template>
           <template #button-opsi-2>
             <div class="product__price-desktop">
