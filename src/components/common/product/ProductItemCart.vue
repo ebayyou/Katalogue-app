@@ -1,16 +1,21 @@
 <script setup>
-import ProductCartCount from './ProductCartCount.vue';
+import { storeToRefs } from "pinia";
+import useProductStore from "../../../stores/product";
+import ProductCartCount from "./ProductCartCount.vue";
+
+const productStore = useProductStore();
+const { cartProducts } = storeToRefs(productStore);
 </script>
 
 <template>
-  <div class="product__item__cart">
+  <div v-for="cart in cartProducts" :key="cart.id" class="product__item__cart">
     <div class="product__group">
-      <img class="product__img" src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="product" />
+      <img class="product__img" :src="cart.image" :alt="cart.title" />
 
       <div class="product__info">
-        <h4>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h4>
-        <p class="id">id-1</p>
-        <p class="price">$ 109.95</p>
+        <h4>{{ cart.title }}</h4>
+        <p class="id">{{ cart.id }}</p>
+        <p class="price">${{ cart.price }}</p>
       </div>
     </div>
 

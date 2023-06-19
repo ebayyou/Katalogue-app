@@ -5,20 +5,60 @@ import API from "../utils/Api";
 const useProductStore = defineStore("product", () => {
   // state
   const product = ref(null);
-  const loading = ref(true);
+  const cartProducts = ref([]);
+  const quantityProducts = ref([]);
+  const isLoading = ref(true);
+  const isAvailableProduct = ref(false);
+  const availableProduct = ref(["men's clothing", "women's clothing"]);
   const backgroundProduct = ref("");
 
   // action
   const getProductByCount = async (count) => {
-    loading.value = true;
+    isLoading.value = true;
 
     try {
-      const singgleProduct = await API.getSingleProduct(count);
-      product.value = singgleProduct;
+      const singleProduct = await API.getSingleProduct(count);
+
+      if (availableProduct.value.includes(singleProduct.category)) {
+        product.value = singleProduct;
+        isAvailableProduct.value = true;
+      } else {
+        isAvailableProduct.value = false;
+      }
     } catch (error) {
-      console.log(error);
+      alert(`there is an error: ${error}`);
     } finally {
-      loading.value = false;
+      isLoading.value = false;
+    }
+  };
+
+  const getCartProducts = async () => {
+    const products = await API.getAllProduct();
+
+    const transformCarts = quantityProducts.value.map((cart) => {
+      const { id, title, image, price } = products.filter(
+        (product) => product.id === cart.productId
+      )[0];
+
+      return {
+        id: `id-${id}`,
+        title,
+        image,
+        price,
+      };
+    });
+
+    cartProducts.value.push(...transformCarts);
+  };
+
+  const addToCart = async (productId, quantity) => {
+    try {
+      const response = await API.addCartProduct({ productId, quantity });
+
+      quantityProducts.value.push(...response.products);
+      alert("Success added product to cart");
+    } catch (error) {
+      alert(`there is an error: ${error}`);
     }
   };
 
@@ -28,9 +68,13 @@ const useProductStore = defineStore("product", () => {
 
   return {
     product,
+    cartProducts,
     backgroundProduct,
-    loading,
+    isLoading,
+    isAvailableProduct,
     getProductByCount,
+    getCartProducts,
+    addToCart,
     setBackgroundProduct,
   };
 });

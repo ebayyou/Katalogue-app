@@ -1,17 +1,34 @@
 <script setup>
-import { ArrowRight2 } from 'vue-iconsax';
-import { RouterLink } from 'vue-router';
+import { ref } from "vue";
+import { ArrowRight2 } from "vue-iconsax";
+import useProductStore from "../../stores/product";
 
-defineProps({
-  breadcrumbs: Array,
-});
+const productStore = useProductStore();
+
+const breadcrumbs = ref([
+  {
+    key: 1,
+    name: "Katalogue",
+  },
+  {
+    key: 2,
+    name: "Products",
+  },
+  {
+    key: 3,
+    name: productStore.product?.category,
+  },
+]);
 </script>
 
 <template>
   <div class="breadcrumbs">
     <div v-for="item in breadcrumbs" :key="item.key" class="bread__item">
-      <RouterLink class="bread__link" to="/">{{ item.name }}</RouterLink>
-      <ArrowRight2 v-show="item.key !== breadcrumbs.length" class="bread__icon" />
+      <p class="bread__link">{{ item.name }}</p>
+      <ArrowRight2
+        v-show="item.key !== breadcrumbs.length"
+        class="bread__icon"
+      />
     </div>
   </div>
 </template>
@@ -41,6 +58,7 @@ defineProps({
   font-style: normal;
   font-weight: var(--font-regular);
   font-size: var(--fs-text-sm);
+  text-transform: capitalize;
   line-height: 21px;
   color: var(--neutral-gray);
 }

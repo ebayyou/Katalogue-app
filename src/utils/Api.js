@@ -8,6 +8,13 @@ const API = (() => {
     return response;
   };
 
+  const getAllProduct = async () => {
+    const request = await fetch(`${API_URL}/products`);
+    const response = await request.json();
+
+    return response;
+  };
+
   const getUserCarts = async (userId) => {
     const request = await fetch(`${API_URL}/carts/user/${userId}`);
     const response = await request.json();
@@ -18,6 +25,9 @@ const API = (() => {
   const addCartProduct = async ({ productId, quantity }) => {
     const request = await fetch(`${API_URL}/carts`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         userId: 5,
         date: "2020-02-03",
@@ -32,6 +42,9 @@ const API = (() => {
   const updateCartProduct = async ({ productId, quantity }) => {
     const request = await fetch(`${API_URL}/carts/${productId}`, {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         userId: 5,
         date: "2020-02-03",
@@ -46,6 +59,9 @@ const API = (() => {
   const deleteCartProduct = async (productId) => {
     const request = await fetch(`${API_URL}/carts/${productId}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     const response = await request.json();
@@ -54,6 +70,7 @@ const API = (() => {
 
   return {
     getSingleProduct,
+    getAllProduct,
     getUserCarts,
     addCartProduct,
     updateCartProduct,

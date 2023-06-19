@@ -5,7 +5,7 @@ import { RouterLink } from "vue-router";
 defineProps({
   iconName: {
     type: String,
-    default: null,
+    default: "",
   },
   action: String,
   to: String,
@@ -15,7 +15,7 @@ defineProps({
 <template>
   <RouterLink :to="to" :class="iconName ? 'button__action' : 'button__linkto'">
     <vsx-icon
-      v-show="iconName"
+      v-if="iconName"
       :iconName="iconName"
       :size="24"
       color="#ffffff"

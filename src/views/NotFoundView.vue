@@ -13,5 +13,3 @@ import LayoutProduct from "../components/layout/LayoutProduct.vue";
     </template>
   </LayoutProduct>
 </template>
-
-<style></style>

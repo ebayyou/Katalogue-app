@@ -12,10 +12,7 @@
 .women-clothing {
   background: var(--gradient-women);
 }
-.electronics {
-  background: var(--gradient-404);
-}
-.jewelery {
+.unvailable-product {
   background: var(--gradient-404);
 }
 
@@ -87,10 +84,7 @@ a,
   .women-clothing-lg {
     background: var(--gradient-women);
   }
-  .electronics-lg {
-    background: var(--gradient-404);
-  }
-  .jewelery-lg {
+  .unvailable-product-lg {
     background: var(--gradient-404);
   }
 }

@@ -1,11 +1,31 @@
 <script setup>
-import ButtonLinkTo from "./button/ButtonLinkTo.vue";
+import { useRouter } from "vue-router";
+import useCountProductStore from "../../stores/countProduct";
+import useProductStore from "../../stores/product";
+import ButtonAction from "./button/ButtonAction.vue";
 import WrapperButton from "./button/WrapperButton.vue";
 
 defineProps({
   errorCode: Number,
   errorMsg: String,
 });
+
+const productStore = useProductStore();
+const countProductStore = useCountProductStore();
+const router = useRouter();
+
+const goToNextProduct = () => {
+  countProductStore.nextProductCount();
+  productStore.getProductByCount(countProductStore.countProduct);
+
+  router.push(`/products/${countProductStore.countProduct}`);
+};
+
+const refreshProduct = () => {
+  countProductStore.clearCountProduct();
+  router.push({ name: "products" });
+  productStore.getProductByCount(countProductStore.countProduct);
+};
 </script>
 
 <template>
@@ -19,10 +39,15 @@ defineProps({
 
         <WrapperButton :opsi="2" noBackground="noBackground">
           <template #button-opsi-1>
-            <ButtonLinkTo to="/" iconName="Shop" action="Next product" />
+            <ButtonAction
+              to="/"
+              iconName="Shop"
+              action="Next product"
+              :handlerEvent="goToNextProduct"
+            />
           </template>
           <template #button-opsi-2>
-            <ButtonLinkTo to="/" action="Refresh" />
+            <ButtonAction action="Refresh" :handlerEvent="refreshProduct" />
           </template>
         </WrapperButton>
       </div>
