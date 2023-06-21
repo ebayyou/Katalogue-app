@@ -1,10 +1,16 @@
 <script setup>
 import { ref, computed } from "vue";
+import { storeToRefs } from "pinia";
 import { Minus, Add, Trash } from "vue-iconsax";
+import useProductStore from "../../../stores/product";
 
+const productStore = useProductStore();
+const { cartProducts, quantityProducts } = storeToRefs(productStore);
 const count = ref(1);
 const disabledMin = computed(() => count.value === 1);
 const disabledPlus = computed(() => count.value >= 20);
+
+const deleteProductInCart = () => {};
 </script>
 
 <template>
@@ -12,7 +18,7 @@ const disabledPlus = computed(() => count.value >= 20);
     <p>Items that have been purchased cannot be returned</p>
 
     <div class="group__cart-count">
-      <button type="button" class="btn__count">
+      <button type="button" class="btn__count" @click="deleteProductInCart">
         <Trash :size="24" color="#C1C1C1" type="linear" />
       </button>
 

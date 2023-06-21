@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount } from "vue";
+import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { RouterLink } from "vue-router";
 import { Shop } from "vue-iconsax";
@@ -7,26 +7,24 @@ import useProductStore from "../stores/product";
 import useCountProductStore from "../stores/countProduct";
 // import ButtonAction from '../components/common/button/ButtonAction.vue';
 import ButtonLinkTo from "../components/common/button/ButtonLinkTo.vue";
-import ProductItemCart from "../components/common/product/ProductItemCart.vue";
+import ProductCartItem from "../components/common/product/ProductCartItem.vue";
 import LayoutProductShopping from "../components/layout/LayoutProductShopping.vue";
 
 defineEmits(["pointerenter", "pointerleave"]);
 
 const productStore = useProductStore();
 const countProductStore = useCountProductStore();
-const { cartProducts } = storeToRefs(productStore);
+const { quantityProducts } = storeToRefs(productStore);
 const { countProduct } = storeToRefs(countProductStore);
 
-onBeforeMount(() => {
-  productStore.getCartProducts();
-});
+onMounted(() => productStore.getCartProducts());
 </script>
 
 <template>
   <LayoutProductShopping :opsiButton="1" headingBarName="Your Shopping Cart">
     <template #product-shopping-content>
       <div class="product__wrapper-list">
-        <ProductItemCart v-if="cartProducts?.length !== 0" />
+        <ProductCartItem v-if="quantityProducts?.length !== 0" />
         <div v-else class="wrap__empty">
           <div class="group__flex">
             <img

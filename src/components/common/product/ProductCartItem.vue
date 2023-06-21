@@ -4,7 +4,8 @@ import useProductStore from "../../../stores/product";
 import ProductCartCount from "./ProductCartCount.vue";
 
 const productStore = useProductStore();
-const { cartProducts } = storeToRefs(productStore);
+const { cartProducts, quantityProducts } = storeToRefs(productStore);
+console.log(cartProducts.value, quantityProducts.value);
 </script>
 
 <template>
