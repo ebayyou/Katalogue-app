@@ -13,7 +13,7 @@ import LayoutProductShopping from "../components/layout/LayoutProductShopping.vu
     headingBarName="Order Summary"
   >
     <template #product-shopping-content>
-      <div class="product__wrapper-list">
+      <div class="product__wrapper-list p-wrap">
         <div class="confirm__group">
           <h3>#441122</h3>
 
@@ -65,6 +65,9 @@ import LayoutProductShopping from "../components/layout/LayoutProductShopping.vu
 </template>
 
 <style>
+.p-wrap {
+  padding: 1em;
+}
 .product__confirm {
   display: flex;
   flex-direction: column;

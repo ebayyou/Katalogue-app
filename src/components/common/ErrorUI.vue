@@ -4,6 +4,7 @@ import useCountProductStore from "../../stores/countProduct";
 import useProductStore from "../../stores/product";
 import ButtonAction from "./button/ButtonAction.vue";
 import WrapperButton from "./button/WrapperButton.vue";
+import NavigationBar from "./NavigationBar.vue";
 
 defineProps({
   errorCode: Number,
@@ -32,6 +33,10 @@ const refreshProduct = () => {
   <div class="error__wrapper error__flex">
     <div class="error__background error__flex">
       <div class="error__group">
+        <div class="error__navbar">
+          <NavigationBar />
+        </div>
+
         <div class="error__info">
           <h1>{{ errorCode }}</h1>
           <p>{{ errorMsg }}</p>
@@ -70,6 +75,13 @@ const refreshProduct = () => {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.error__navbar {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
 }
 
 .error__background {
@@ -128,6 +140,11 @@ const refreshProduct = () => {
 
   .error__group {
     width: 60%;
+  }
+
+  .error__navbar {
+    position: unset;
+    display: none;
   }
 }
 

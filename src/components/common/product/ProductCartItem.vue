@@ -4,18 +4,22 @@ import useProductStore from "../../../stores/product";
 import ProductCartCount from "./ProductCartCount.vue";
 
 const productStore = useProductStore();
-const { cartProducts } = storeToRefs(productStore);
+const { cartProducts, quantityProducts } = storeToRefs(productStore);
+console.log(cartProducts.value, quantityProducts.value);
 </script>
 
 <template>
   <div v-for="cart in cartProducts" :key="cart.id" class="product__item__cart">
-    <div class="product__group">
+    <div class="product__group product__flex">
       <img class="product__img" :src="cart.image" :alt="cart.title" />
 
       <div class="product__info">
         <h4>{{ cart.title }}</h4>
-        <p class="id">{{ cart.id }}</p>
-        <p class="price">${{ cart.price }}</p>
+
+        <div class="product__flex">
+          <p class="price">${{ cart.price }}</p>
+          <p class="id">{{ cart.id }}</p>
+        </div>
       </div>
     </div>
 
@@ -25,18 +29,19 @@ const { cartProducts } = storeToRefs(productStore);
 
 <style scoped>
 .product__item__cart {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 0.8em;
-  border-bottom: 1px solid rgba(50, 48, 50, 0.32);
+  padding: 0.8em;
+  border-bottom: 2px solid rgba(193, 193, 193, 0.45);
 }
 
-.product__group {
+.product__flex {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.6em;
+  gap: 1em;
+}
+
+.product__group {
+  width: 80%;
 }
 
 .product__img {
@@ -50,8 +55,9 @@ const { cartProducts } = storeToRefs(productStore);
 .product__info h4 {
   font-style: normal;
   font-weight: var(--font-semi-bold);
-  font-size: var(--fs-text-sm);
+  font-size: var(--fs-text-md);
   line-height: 21px;
+  margin-bottom: 0.3em;
 }
 
 .product__info .id {
@@ -59,6 +65,10 @@ const { cartProducts } = storeToRefs(productStore);
   font-weight: var(--font-regular);
   font-size: var(--fs-text-xs);
   line-height: 18px;
+  padding: 5px;
+  background: var(--primary-blue);
+  color: var(--white);
+  border-radius: 3px;
 }
 
 .product__info .price {

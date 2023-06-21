@@ -12,7 +12,11 @@ defineProps({
 </script>
 
 <template>
-  <button type="button" class="button__action" @click="handlerEvent">
+  <button
+    type="button"
+    :class="iconName ? 'button__action' : 'button__linkto'"
+    @click="handlerEvent"
+  >
     <vsx-icon
       v-if="iconName"
       :iconName="iconName"
