@@ -26,7 +26,7 @@
   right: 0;
   width: 100%;
   height: 100vh;
-  background: var(--gradient-404);
+  background: var(--neutral-light-blue);
   z-index: 250;
   overflow: hidden;
 }
