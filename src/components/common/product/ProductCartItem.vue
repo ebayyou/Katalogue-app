@@ -17,12 +17,12 @@ const { cartProducts } = storeToRefs(productStore);
 
         <div class="product__flex">
           <p class="price">${{ cart.price }}</p>
-          <p class="id">{{ cart.id }}</p>
+          <p class="id">{{ cart.productId }}</p>
         </div>
       </div>
     </div>
 
-    <ProductCartCount :productId="cart.id" />
+    <ProductCartCount :productId="cart.productId" />
   </div>
 </template>
 

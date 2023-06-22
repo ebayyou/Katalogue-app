@@ -40,7 +40,7 @@ const API = (() => {
   };
 
   const updateCartProduct = async ({ productId, quantity }) => {
-    const request = await fetch(`${API_URL}/carts/${productId}`, {
+    const request = await fetch(`${API_URL}/carts/7`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
