@@ -1,13 +1,21 @@
-<script setup></script>
+<script setup>
+defineProps({
+  products: Array,
+});
+</script>
 
 <template>
-  <div class="confirm__product-item">
+  <div
+    v-for="product in products"
+    :key="product.productId"
+    class="confirm__product-item"
+  >
     <div class="product__info">
-      <h4>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h4>
-      <p>Quantity: 12</p>
+      <h4>{{ product.title }}</h4>
+      <p>Quantity: {{ product.quantity }}</p>
     </div>
 
-    <h4 class="product__price">$1200</h4>
+    <h4 class="product__price">${{ product.quantity * product.price }}</h4>
   </div>
 </template>
 

@@ -6,6 +6,14 @@
   font-weight: normal;
 }
 
+button:disabled {
+  background: var(--neutral-light-blue);
+}
+
+button:disabled h5 {
+  color: var(--neutral-black);
+}
+
 .men-clothing {
   background: var(--gradient-men);
 }
@@ -48,7 +56,7 @@ a,
 
 .button__action h5 {
   font-style: normal;
-  font-weight: var(--font-regular);
+  font-weight: var(--font-reguler);
   font-size: var(--fs-text-md);
   line-height: 24px;
   color: var(--white);

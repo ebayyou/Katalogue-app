@@ -1,9 +1,38 @@
 <script setup>
+import { ref, onBeforeMount } from "vue";
+import { computed } from "@vue/reactivity";
+import { storeToRefs } from "pinia";
+import useProductStore from "../stores/product";
+import { getFormattedDate, getRandomNumber } from "../utils";
 import ButtonLinkTo from "../components/common/button/ButtonLinkTo.vue";
+import ButtonAction from "../components/common/button/ButtonAction.vue";
 import BillItem from "../components/common/product/BillItem.vue";
 import ProductConfirmItem from "../components/common/product/ProductConfirmItem.vue";
 import ProductConfirmListItem from "../components/common/product/ProductConfirmListItem.vue";
+import ProductNothingInCart from "../components/common/product/ProductNothingInCart.vue";
 import LayoutProductShopping from "../components/layout/LayoutProductShopping.vue";
+import { useRouter } from "vue-router";
+
+const currentDate = ref("");
+const idOrder = ref(0);
+const taxes = ref(10);
+const items = ref(1200);
+const shipping = ref(35);
+const total = ref(1245);
+
+const productStore = useProductStore();
+const router = useRouter();
+
+const { cartProducts } = storeToRefs(productStore);
+
+onBeforeMount(() => {
+  currentDate.value = getFormattedDate();
+  idOrder.value = getRandomNumber();
+});
+
+const nothingProductInCart = computed(() => cartProducts.value?.length === 0);
+
+const confirmOrder = () => router.push("/products/greetings");
 </script>
 
 <template>
@@ -13,14 +42,16 @@ import LayoutProductShopping from "../components/layout/LayoutProductShopping.vu
     headingBarName="Order Summary"
   >
     <template #product-shopping-content>
-      <div class="product__wrapper-list p-wrap">
+      <ProductNothingInCart v-if="nothingProductInCart" />
+
+      <div v-else class="product__wrapper-list p-wrap">
         <div class="confirm__group">
-          <h3>#441122</h3>
+          <h3>#{{ idOrder }}</h3>
 
           <div class="confirm__status">
             <div class="confirm__status-item">
               <h4>Order Date</h4>
-              <p>18 June, 2023</p>
+              <p>{{ currentDate }}</p>
             </div>
             <div class="confirm__status-item">
               <h4>Payment</h4>
@@ -35,31 +66,30 @@ import LayoutProductShopping from "../components/layout/LayoutProductShopping.vu
 
         <ProductConfirmListItem name="Items">
           <template #list-item>
-            <ProductConfirmItem />
-            <ProductConfirmItem />
+            <ProductConfirmItem :products="cartProducts" />
           </template>
         </ProductConfirmListItem>
 
         <ProductConfirmListItem name="Bills">
           <template #list-item>
-            <BillItem name="Taxes" price="10" />
-            <BillItem name="Items" price="1200" />
-            <BillItem name="Shipping" price="35" />
+            <BillItem name="Taxes" :price="taxes" />
+            <BillItem name="Items" :price="items" />
+            <BillItem name="Shipping" :price="shipping" />
           </template>
         </ProductConfirmListItem>
 
-        <BillItem type="bold" name="Total" price="1245" />
+        <BillItem type="bold" name="Total" :price="total" />
       </div>
     </template>
 
     <template #button-group>
       <ButtonLinkTo to="/" action="Cancel" />
-      <ButtonLinkTo
-        to="/products/greetings"
+      <ButtonAction
+        :handlerEvent="confirmOrder"
+        :disabled="nothingProductInCart"
         iconName="ReceiptItem"
         action="Confirm Order"
       />
-      <!-- <ButtonAction iconName="ReceiptItem" action="Confirm Order" /> -->
     </template>
   </LayoutProductShopping>
 </template>

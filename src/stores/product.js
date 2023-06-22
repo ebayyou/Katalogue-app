@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import API from "../utils/Api";
-import { isProductInCart } from "../utils";
+import { changeProductIdToNumber, isProductInCart } from "../utils";
 
 const useProductStore = defineStore("product", () => {
   // state
@@ -48,16 +48,17 @@ const useProductStore = defineStore("product", () => {
             return null;
           }
 
-          console.log("here");
           const { id, title, image, price } = products.find(
             (product) => product.id === item.productId
           );
 
           return {
-            id: `id-${id}`,
+            productId: `id-${id}`,
             title,
             image,
             price,
+            quantity: item.quantity,
+            isProductCart: true,
           };
         })
         .filter(Boolean);
@@ -94,6 +95,51 @@ const useProductStore = defineStore("product", () => {
     }
   };
 
+  const updateProductCart = async (id, quantity) => {
+    try {
+      const productId = changeProductIdToNumber(id);
+      const response = await API.updateCartProduct({ productId, quantity });
+      
+      const updateProductQuantity = quantityProducts.value.map((item) => {
+        if (item.productId === productId) {
+          return {
+            productId: id,
+            ...response.products[0],
+          };
+        }
+
+        return item;
+      });
+
+
+      quantityProducts.value = updateProductQuantity;
+    } catch (error) {
+      console.error("Error update product in cart:", error);
+    }
+  };
+
+  const deleteProductCart = async (productId) => {
+    try {
+      await API.deleteCartProduct();
+      const id = changeProductIdToNumber(productId);
+
+      const deleteQuantityProduct = quantityProducts.value.filter(
+        (item) => item.productId !== id
+      );
+
+      quantityProducts.value.splice(
+        0,
+        quantityProducts.value.length,
+        ...deleteQuantityProduct
+      );
+
+      // update the product cart
+      getCartProducts();
+    } catch (error) {
+      console.error("Error delete product in cart:", error);
+    }
+  };
+
   const setBackgroundProduct = (category) => {
     backgroundProduct.value = category;
   };
@@ -108,6 +154,8 @@ const useProductStore = defineStore("product", () => {
     getProductByCount,
     getCartProducts,
     addToCart,
+    updateProductCart,
+    deleteProductCart,
     setBackgroundProduct,
   };
 });

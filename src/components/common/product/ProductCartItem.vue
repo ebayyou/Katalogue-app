@@ -4,8 +4,7 @@ import useProductStore from "../../../stores/product";
 import ProductCartCount from "./ProductCartCount.vue";
 
 const productStore = useProductStore();
-const { cartProducts, quantityProducts } = storeToRefs(productStore);
-console.log(cartProducts.value, quantityProducts.value);
+const { cartProducts } = storeToRefs(productStore);
 </script>
 
 <template>
@@ -18,12 +17,12 @@ console.log(cartProducts.value, quantityProducts.value);
 
         <div class="product__flex">
           <p class="price">${{ cart.price }}</p>
-          <p class="id">{{ cart.id }}</p>
+          <p class="id">{{ cart.productId }}</p>
         </div>
       </div>
     </div>
 
-    <ProductCartCount />
+    <ProductCartCount :productId="cart.productId" />
   </div>
 </template>
 

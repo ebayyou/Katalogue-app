@@ -1,13 +1,21 @@
 <script setup>
 import { vsxIcon } from "vue-iconsax";
 
-defineProps({
+const props = defineProps({
+  handlerEvent: Function,
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  isActiveCart: {
+    type: Boolean,
+    default: false,
+  },
   iconName: {
     type: String,
     default: "",
   },
   action: String,
-  handlerEvent: Function,
 });
 </script>
 
@@ -16,13 +24,14 @@ defineProps({
     type="button"
     :class="iconName ? 'button__action' : 'button__linkto'"
     @click="handlerEvent"
+    :disabled="disabled"
   >
     <vsx-icon
       v-if="iconName"
       :iconName="iconName"
       :size="24"
-      color="#ffffff"
-      type="linear"
+      :color="disabled ? '#323032' : '#ffffff'"
+      :type="isActiveCart ? 'bold' : 'linear'"
     />
     <h5>{{ action }}</h5>
   </button>

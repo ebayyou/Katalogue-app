@@ -5,12 +5,34 @@ import { Minus, Add, Trash } from "vue-iconsax";
 import useProductStore from "../../../stores/product";
 
 const productStore = useProductStore();
-const { cartProducts, quantityProducts } = storeToRefs(productStore);
-const count = ref(1);
+const { quantityProducts } = storeToRefs(productStore);
+
+const props = defineProps({
+  productId: String,
+});
+
+const qtyProduct = computed(() =>
+  quantityProducts.value.find((item) =>
+    `id-${item.productId}` === props.productId ? item.quantity : false
+  )
+);
+
+const count = ref(qtyProduct.value.quantity);
 const disabledMin = computed(() => count.value === 1);
 const disabledPlus = computed(() => count.value >= 20);
 
-const deleteProductInCart = () => {};
+const updateProductInCart = (type) => {
+  if (type === "plus") {
+    count.value += 1;
+  } else {
+    count.value -= 1;
+  }
+
+  productStore.updateProductCart(props.productId, count.value);
+};
+
+const deleteProductInCart = () =>
+  productStore.deleteProductCart(props.productId);
 </script>
 
 <template>
@@ -27,7 +49,7 @@ const deleteProductInCart = () => {};
           class="btn__count"
           type="button"
           :disabled="disabledMin"
-          @click="count -= 1"
+          @click="() => updateProductInCart('min')"
         >
           <Minus />
         </button>
@@ -38,7 +60,7 @@ const deleteProductInCart = () => {};
           class="btn__count"
           type="button"
           :disabled="disabledPlus"
-          @click="count += 1"
+          @click="() => updateProductInCart('plus')"
         >
           <Add />
         </button>
