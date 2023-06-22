@@ -1,10 +1,14 @@
 <script setup>
 import { vsxIcon } from "vue-iconsax";
 
-defineProps({
+const props = defineProps({
   iconName: {
     type: String,
     default: "",
+  },
+  isActiveCart: {
+    type: Boolean,
+    default: false,
   },
   action: String,
   handlerEvent: Function,
@@ -22,7 +26,7 @@ defineProps({
       :iconName="iconName"
       :size="24"
       color="#ffffff"
-      type="linear"
+      :type="isActiveCart ? 'bold' : 'linear'"
     />
     <h5>{{ action }}</h5>
   </button>

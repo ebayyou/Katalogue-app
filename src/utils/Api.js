@@ -29,8 +29,8 @@ const API = (() => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: 5,
-        date: "2020-02-03",
+        userId: 1,
+        date: new Date().toISOString(),
         products: [{ productId, quantity }],
       }),
     });
@@ -46,8 +46,8 @@ const API = (() => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: 5,
-        date: "2020-02-03",
+        userId: 1,
+        date: new Date().toISOString(),
         products: [{ productId, quantity }],
       }),
     });
@@ -56,8 +56,8 @@ const API = (() => {
     return response;
   };
 
-  const deleteCartProduct = async (productId) => {
-    const request = await fetch(`${API_URL}/carts/${productId}`, {
+  const deleteCartProduct = async () => {
+    const request = await fetch(`${API_URL}/carts/7`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

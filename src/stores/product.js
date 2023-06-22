@@ -48,7 +48,6 @@ const useProductStore = defineStore("product", () => {
             return null;
           }
 
-          console.log("here");
           const { id, title, image, price } = products.find(
             (product) => product.id === item.productId
           );
@@ -58,6 +57,8 @@ const useProductStore = defineStore("product", () => {
             title,
             image,
             price,
+            quantity: item.quantity,
+            isProductCart: true,
           };
         })
         .filter(Boolean);
@@ -94,6 +95,28 @@ const useProductStore = defineStore("product", () => {
     }
   };
 
+  const deleteProductCart = async (productId) => {
+    try {
+      await API.deleteCartProduct();
+      const id = Number(productId.split("id-")[1]);
+
+      const deleteQuantityProduct = quantityProducts.value.filter(
+        (item) => item.productId !== id
+      );
+
+      quantityProducts.value.splice(
+        0,
+        quantityProducts.value.length,
+        ...deleteQuantityProduct
+      );
+
+      // update the product cart
+      getCartProducts();
+    } catch (error) {
+      console.error("Error delete product in cart:", error);
+    }
+  };
+
   const setBackgroundProduct = (category) => {
     backgroundProduct.value = category;
   };
@@ -108,6 +131,7 @@ const useProductStore = defineStore("product", () => {
     getProductByCount,
     getCartProducts,
     addToCart,
+    deleteProductCart,
     setBackgroundProduct,
   };
 });

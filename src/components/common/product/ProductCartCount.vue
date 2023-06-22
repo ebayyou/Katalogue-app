@@ -1,16 +1,20 @@
 <script setup>
 import { ref, computed } from "vue";
-import { storeToRefs } from "pinia";
 import { Minus, Add, Trash } from "vue-iconsax";
 import useProductStore from "../../../stores/product";
 
 const productStore = useProductStore();
-const { cartProducts, quantityProducts } = storeToRefs(productStore);
+
+const props = defineProps({
+  productId: String,
+});
+
 const count = ref(1);
 const disabledMin = computed(() => count.value === 1);
 const disabledPlus = computed(() => count.value >= 20);
 
-const deleteProductInCart = () => {};
+const deleteProductInCart = () =>
+  productStore.deleteProductCart(props.productId);
 </script>
 
 <template>

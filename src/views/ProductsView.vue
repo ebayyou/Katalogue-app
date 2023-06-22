@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount } from "vue";
+import { onBeforeMount, watch } from "vue";
 import { computed } from "@vue/reactivity";
 import { storeToRefs } from "pinia";
 import { useRouter, useRoute, RouterView } from "vue-router";
@@ -22,14 +22,30 @@ const countProductStore = useCountProductStore();
 const router = useRouter();
 const route = useRoute();
 
-const { product, isLoading, isAvailableProduct, backgroundProduct } =
-  storeToRefs(productStore);
+const {
+  product,
+  cartProducts,
+  isLoading,
+  isAvailableProduct,
+  backgroundProduct,
+} = storeToRefs(productStore);
 const { countProduct } = storeToRefs(countProductStore);
 const category = computed(() =>
   isAvailableProduct.value
     ? product.value?.category.split("'s ").join("-")
     : "unvailable-product"
 );
+const isActiveCart = computed(() =>
+  cartProducts.value?.find((cart) => {
+    if (cart.id === product?.value.id) return cart.isProductCart;
+
+    return false;
+  })
+);
+
+watch(isActiveCart, (newValue, oldValue) => {
+  console.log("isActiveCart has changed!", newValue, oldValue);
+});
 
 onBeforeMount(() => {
   const id = route.params.id ? route.params.id : countProduct.value;
@@ -108,6 +124,7 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
           <template #button-opsi-1>
             <ButtonAction
               :handlerEvent="addProductToCart"
+              :isActiveCart="isActiveCart"
               iconName="ShoppingCart"
               action="Add to Cart"
             />
