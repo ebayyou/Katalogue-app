@@ -17,10 +17,6 @@ const qtyProduct = computed(() =>
   )
 );
 
-console.log(quantityProducts.value);
-console.log(props.productId);
-console.log(qtyProduct.value);
-
 const count = ref(qtyProduct.value.quantity);
 const disabledMin = computed(() => count.value === 1);
 const disabledPlus = computed(() => count.value >= 20);
