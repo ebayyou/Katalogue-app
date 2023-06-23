@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, watch } from "vue";
+import { onBeforeMount } from "vue";
 import { computed } from "@vue/reactivity";
 import { storeToRefs } from "pinia";
 import { useRouter, useRoute, RouterView } from "vue-router";
@@ -30,22 +30,17 @@ const {
   backgroundProduct,
 } = storeToRefs(productStore);
 const { countProduct } = storeToRefs(countProductStore);
+
 const category = computed(() =>
   isAvailableProduct.value
     ? product.value?.category.split("'s ").join("-")
     : "unvailable-product"
 );
 const isActiveCart = computed(() =>
-  cartProducts.value?.find((cart) => {
-    if (cart.id === product?.value.id) return cart.isProductCart;
-
-    return false;
-  })
+  cartProducts.value?.some(
+    (cart) => cart.productId === `id-${product.value?.id}` && cart.isProductCart
+  )
 );
-
-watch(isActiveCart, (newValue, oldValue) => {
-  console.log("isActiveCart has changed!", newValue, oldValue);
-});
 
 onBeforeMount(() => {
   const id = route.params.id ? route.params.id : countProduct.value;

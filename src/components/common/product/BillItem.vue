@@ -1,7 +1,7 @@
 <script setup>
 defineProps({
   name: String,
-  price: String,
+  price: Number,
   type: String,
 });
 </script>
