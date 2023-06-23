@@ -15,7 +15,9 @@ defineProps({
       <p>Quantity: {{ product.quantity }}</p>
     </div>
 
-    <h4 class="product__price">${{ product.quantity * product.price }}</h4>
+    <h4 class="product__price">
+      ${{ Math.round(product.quantity * product.price) }}
+    </h4>
   </div>
 </template>
 

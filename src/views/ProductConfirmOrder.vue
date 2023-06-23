@@ -2,6 +2,7 @@
 import { ref, onBeforeMount } from "vue";
 import { computed } from "@vue/reactivity";
 import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
 import useProductStore from "../stores/product";
 import { getFormattedDate, getRandomNumber } from "../utils";
 import ButtonLinkTo from "../components/common/button/ButtonLinkTo.vue";
@@ -11,28 +12,51 @@ import ProductConfirmItem from "../components/common/product/ProductConfirmItem.
 import ProductConfirmListItem from "../components/common/product/ProductConfirmListItem.vue";
 import ProductNothingInCart from "../components/common/product/ProductNothingInCart.vue";
 import LayoutProductShopping from "../components/layout/LayoutProductShopping.vue";
-import { useRouter } from "vue-router";
+
+defineEmits(["pointerenter", "pointerleave"]);
 
 const currentDate = ref("");
 const idOrder = ref(0);
 const taxes = ref(10);
-const items = ref(1200);
+const items = ref(0);
 const shipping = ref(35);
-const total = ref(1245);
+const total = ref(0);
 
 const productStore = useProductStore();
 const router = useRouter();
 
 const { cartProducts } = storeToRefs(productStore);
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
+  // get up to date for cartProducts
+  await productStore.getCartProducts();
+
   currentDate.value = getFormattedDate();
   idOrder.value = getRandomNumber();
+  items.value = calculateTotalProductsInCart();
+  total.value = calculateTotalAmount();
 });
 
 const nothingProductInCart = computed(() => cartProducts.value?.length === 0);
 
-const confirmOrder = () => router.push("/products/greetings");
+const calculateTotalProductsInCart = () => {
+  const totalPrice = cartProducts.value?.reduce((total, cart) => {
+    const price = Math.round(cart.price * cart.quantity);
+    return total + price;
+  }, 0);
+
+  return totalPrice;
+};
+
+const calculateTotalAmount = () => {
+  const totalPrice = taxes.value + items.value + shipping.value;
+  return Math.floor(totalPrice);
+};
+
+const confirmOrder = () => {
+  productStore.clearProductsCart();
+  router.push("/products/greetings");
+};
 </script>
 
 <template>

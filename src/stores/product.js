@@ -99,7 +99,7 @@ const useProductStore = defineStore("product", () => {
     try {
       const productId = changeProductIdToNumber(id);
       const response = await API.updateCartProduct({ productId, quantity });
-      
+
       const updateProductQuantity = quantityProducts.value.map((item) => {
         if (item.productId === productId) {
           return {
@@ -110,7 +110,6 @@ const useProductStore = defineStore("product", () => {
 
         return item;
       });
-
 
       quantityProducts.value = updateProductQuantity;
     } catch (error) {
@@ -140,6 +139,11 @@ const useProductStore = defineStore("product", () => {
     }
   };
 
+  const clearProductsCart = () => {
+    cartProducts.value = [];
+    quantityProducts.value = [];
+  };
+
   const setBackgroundProduct = (category) => {
     backgroundProduct.value = category;
   };
@@ -156,6 +160,7 @@ const useProductStore = defineStore("product", () => {
     addToCart,
     updateProductCart,
     deleteProductCart,
+    clearProductsCart,
     setBackgroundProduct,
   };
 });
