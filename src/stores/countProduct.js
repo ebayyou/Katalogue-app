@@ -16,7 +16,9 @@ const useCountProductStore = defineStore("countProduct", () => {
     countProduct.value--;
   };
 
-  const updateCountByParamsId = (id) => (countProduct.value = id);
+  const updateCountByParamsId = (id) => {
+    countProduct.value = id;
+  };
 
   const clearCountProduct = () => (countProduct.value = 1);
 
