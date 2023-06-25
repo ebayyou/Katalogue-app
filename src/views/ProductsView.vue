@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeMount } from "vue";
-import { computed } from "@vue/reactivity";
+import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter, useRoute, RouterView } from "vue-router";
 import useProductStore from "../stores/product";
@@ -14,7 +14,6 @@ import ProductReview from "../components/common/product/ProductReview.vue";
 import LayoutProduct from "../components/layout/LayoutProduct.vue";
 import SkeletonUI from "../components/common/SkeletonUI.vue";
 import ErrorUI from "../components/common/ErrorUI.vue";
-import { helperNameMap } from "@vue/compiler-core";
 
 defineEmits(["pointerenter", "pointerleave"]);
 
@@ -31,7 +30,7 @@ const {
   backgroundProduct,
 } = storeToRefs(productStore);
 const { countProduct } = storeToRefs(countProductStore);
-console.log(countProduct.value);
+
 const category = computed(() =>
   isAvailableProduct.value
     ? product.value?.category.split("'s ").join("-")
@@ -44,7 +43,6 @@ const isActiveCart = computed(() =>
 );
 
 onBeforeMount(() => {
-  console.log("helperNameMap");
   const id = route.params.id ? route.params.id : countProduct.value;
   if (route.params.id) countProductStore.updateCountByParamsId(id);
 
@@ -82,7 +80,7 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
   >
     <template #error-product>
       <ErrorUI
-        :errorCode="404"
+        :errorCode="301"
         errorMsg="Sorry, This product is unavailable to show"
       />
     </template>
