@@ -1,3 +1,4 @@
+import { ref } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import ProductsView from "../views/ProductsView.vue";
 import ProductCartView from "../views/ProductCartView.vue";
@@ -44,4 +45,16 @@ const router = createRouter({
   ],
 });
 
+const isLoadingInitial = ref(true);
+
+router.beforeEach(() => {
+  isLoadingInitial.value = true;
+});
+
+router.afterEach(() => {
+  isLoadingInitial.value = false;
+});
+
 export default router;
+
+export { isLoadingInitial };

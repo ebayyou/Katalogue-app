@@ -3,12 +3,9 @@ import { RouterView } from "vue-router";
 import LayoutBackgroud from "./components/layout/LayoutBackgroud.vue";
 import NavigationBar from "./components/common/NavigationBar.vue";
 import BreadCrumbs from "./components/common/BreadCrumbs.vue";
-// import InitialLoadingUI from "./components/common/InitialLoadingUI.vue";
 </script>
 
 <template>
-  <!-- <InitialLoadingUI /> -->
-
   <LayoutBackgroud>
     <template #navbar>
       <NavigationBar />
