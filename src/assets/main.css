@@ -14,21 +14,23 @@ button:disabled h5 {
   color: var(--neutral-black);
 }
 
-.men-clothing {
-  background: var(--gradient-men);
-}
-.women-clothing {
-  background: var(--gradient-women);
-}
-.unvailable-product {
-  background: var(--gradient-404);
-}
-
 a,
 .green {
   text-decoration: none;
   color: var(--primary-purple);
   transition: 0.4s;
+}
+
+button:hover,
+a:hover {
+  background-color: var(--primary-pink);
+}
+
+.men-clothing {
+  background: var(--gradient-men);
+}
+.women-clothing {
+  background: var(--gradient-women);
 }
 
 .heading__text-gradient {
@@ -114,11 +116,7 @@ a,
   .unvailable-product-lg {
     background: var(--gradient-404);
   }
-}
-
-@media (hover: hover) {
-  button,
-  a:hover {
-    background-color: var(--primary-pink);
+  .undefined-lg {
+    background: var(--gradient-404);
   }
 }

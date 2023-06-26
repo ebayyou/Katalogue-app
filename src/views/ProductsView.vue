@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeMount } from "vue";
-import { computed } from "@vue/reactivity";
+import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter, useRoute, RouterView } from "vue-router";
 import useProductStore from "../stores/product";
@@ -14,7 +14,6 @@ import ProductReview from "../components/common/product/ProductReview.vue";
 import LayoutProduct from "../components/layout/LayoutProduct.vue";
 import SkeletonUI from "../components/common/SkeletonUI.vue";
 import ErrorUI from "../components/common/ErrorUI.vue";
-import { helperNameMap } from "@vue/compiler-core";
 
 defineEmits(["pointerenter", "pointerleave"]);
 
@@ -31,7 +30,7 @@ const {
   backgroundProduct,
 } = storeToRefs(productStore);
 const { countProduct } = storeToRefs(countProductStore);
-console.log(countProduct.value);
+
 const category = computed(() =>
   isAvailableProduct.value
     ? product.value?.category.split("'s ").join("-")
@@ -44,7 +43,6 @@ const isActiveCart = computed(() =>
 );
 
 onBeforeMount(() => {
-  console.log("helperNameMap");
   const id = route.params.id ? route.params.id : countProduct.value;
   if (route.params.id) countProductStore.updateCountByParamsId(id);
 
@@ -82,7 +80,7 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
   >
     <template #error-product>
       <ErrorUI
-        :errorCode="404"
+        :errorCode="301"
         errorMsg="Sorry, This product is unavailable to show"
       />
     </template>
@@ -95,7 +93,12 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
   >
     <template #left-product>
       <div class="left-product">
-        <img class="product__img" :src="product.image" :alt="product.title" />
+        <img
+          class="product__img"
+          data-testid="test-render-image"
+          :src="product.image"
+          :alt="product.title"
+        />
       </div>
     </template>
     <template #right-product>
@@ -105,7 +108,9 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
         </div>
 
         <div>
-          <h1 class="product__heading">{{ product.title }}</h1>
+          <h1 class="product__heading" data-testid="test-render-title">
+            {{ product.title }}
+          </h1>
           <div class="product__group group__gap">
             <ProductRating :rating="product.rating.rate" />
             <ProductReview :count="product.rating.count" />
@@ -133,10 +138,12 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
 
             <div class="product__group group__gap product__group-mobile">
               <ButtonPagnation
+                data-test-id="previous-product"
                 :pagnationEvent="pagnationPreviousProduct"
                 iconName="ArrowLeft2"
               />
               <ButtonPagnation
+                data-test-id="next-product"
                 :pagnationEvent="pagnationNextProduct"
                 iconName="ArrowRight2"
               />

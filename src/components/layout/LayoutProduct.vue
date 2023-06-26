@@ -16,11 +16,13 @@ defineProps({
     <section class="layout__product">
       <div class="layout__button">
         <ButtonPagnation
+          data-test-id="previous-product"
           :type="type"
           :pagnationEvent="pagnationPrevious"
           iconName="ArrowLeft2"
         />
         <ButtonPagnation
+          data-test-id="next-product"
           :type="type"
           :pagnationEvent="pagnationNext"
           iconName="ArrowRight2"

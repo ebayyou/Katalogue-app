@@ -8,11 +8,13 @@ defineProps({
     default: "",
   },
   pagnationEvent: Function,
+  dataTestId: String,
 });
 </script>
 
 <template>
   <button
+    :data-testid="dataTestId"
     class="button__pagnation"
     @click="pagnationEvent"
     :class="

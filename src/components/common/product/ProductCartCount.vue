@@ -17,7 +17,7 @@ const qtyProduct = computed(() =>
   )
 );
 
-const count = ref(qtyProduct.value.quantity);
+const count = ref(qtyProduct.value?.quantity);
 const disabledMin = computed(() => count.value === 1);
 const disabledPlus = computed(() => count.value >= 20);
 
@@ -40,12 +40,18 @@ const deleteProductInCart = () =>
     <p>Items that have been purchased cannot be returned</p>
 
     <div class="group__cart-count">
-      <button type="button" class="btn__count" @click="deleteProductInCart">
+      <button
+        data-testid="delete-product"
+        type="button"
+        class="btn__count"
+        @click="deleteProductInCart"
+      >
         <Trash :size="24" color="#C1C1C1" type="linear" />
       </button>
 
       <div class="count__group">
         <button
+          data-testid="remove-count"
           class="btn__count"
           type="button"
           :disabled="disabledMin"
@@ -57,6 +63,7 @@ const deleteProductInCart = () =>
         <span class="count">{{ count }}</span>
 
         <button
+          data-testid="add-count"
           class="btn__count"
           type="button"
           :disabled="disabledPlus"

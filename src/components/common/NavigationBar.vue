@@ -1,6 +1,6 @@
 <script setup>
-import { ShoppingCart } from 'vue-iconsax';
-import { RouterLink } from 'vue-router';
+import { ShoppingCart } from "vue-iconsax";
+import { RouterLink } from "vue-router";
 </script>
 
 <template>

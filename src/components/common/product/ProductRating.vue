@@ -1,6 +1,6 @@
 <script setup>
 import { v4 as uuidv4 } from "uuid";
-import { computed } from "@vue/reactivity";
+import { computed } from "vue";
 import { Star1 } from "vue-iconsax";
 
 const props = defineProps({
