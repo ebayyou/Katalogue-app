@@ -1,11 +1,11 @@
 <script setup>
-import { vsxIcon } from "vue-iconsax";
+import { vsxIcon } from 'vue-iconsax';
 
 defineProps({
   iconName: String,
   type: {
     type: String,
-    default: "",
+    default: '',
   },
   pagnationEvent: Function,
   dataTestId: String,
@@ -14,12 +14,11 @@ defineProps({
 
 <template>
   <button
+    type="button"
     :data-testid="dataTestId"
-    class="button__pagnation"
     @click="pagnationEvent"
-    :class="
-      (iconName === 'ArrowLeft2' ? 'pagnation-left' : 'pagnation-right', type)
-    "
+    class="button__pagnation"
+    :class="iconName === 'ArrowLeft2' ? 'pagnation-left' : 'pagnation-right'"
   >
     <vsx-icon
       v-show="type !== 'skeleton'"

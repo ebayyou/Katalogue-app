@@ -1,5 +1,5 @@
 <script setup>
-import { vsxIcon } from "vue-iconsax";
+import { vsxIcon } from 'vue-iconsax';
 
 const props = defineProps({
   handlerEvent: Function,
@@ -13,15 +13,17 @@ const props = defineProps({
   },
   iconName: {
     type: String,
-    default: "",
+    default: '',
   },
   action: String,
+  dataTestId: String,
 });
 </script>
 
 <template>
   <button
     type="button"
+    :data-testId="dataTestId"
     :class="iconName ? 'button__action' : 'button__linkto'"
     @click="handlerEvent"
     :disabled="disabled"

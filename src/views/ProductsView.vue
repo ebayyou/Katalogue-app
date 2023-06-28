@@ -1,21 +1,21 @@
 <script setup>
-import { onBeforeMount } from "vue";
-import { computed } from "vue";
-import { storeToRefs } from "pinia";
-import { useRouter, useRoute, RouterView } from "vue-router";
-import useProductStore from "../stores/product";
-import useCountProductStore from "../stores/countProduct";
-import WrapperButton from "../components/common/button/WrapperButton.vue";
-import ButtonAction from "../components/common/button/ButtonAction.vue";
-import ButtonPagnation from "../components/common/button/ButtonPagnation.vue";
-import BreadCrumbs from "../components/common/BreadCrumbs.vue";
-import ProductRating from "../components/common/product/ProductRating.vue";
-import ProductReview from "../components/common/product/ProductReview.vue";
-import LayoutProduct from "../components/layout/LayoutProduct.vue";
-import SkeletonUI from "../components/common/SkeletonUI.vue";
-import ErrorUI from "../components/common/ErrorUI.vue";
+import { onBeforeMount } from 'vue';
+import { computed } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useRouter, useRoute, RouterView } from 'vue-router';
+import useProductStore from '../stores/product';
+import useCountProductStore from '../stores/countProduct';
+import WrapperButton from '../components/common/button/WrapperButton.vue';
+import ButtonAction from '../components/common/button/ButtonAction.vue';
+import ButtonPagnation from '../components/common/button/ButtonPagnation.vue';
+import BreadCrumbs from '../components/common/BreadCrumbs.vue';
+import ProductRating from '../components/common/product/ProductRating.vue';
+import ProductReview from '../components/common/product/ProductReview.vue';
+import LayoutProduct from '../components/layout/LayoutProduct.vue';
+import SkeletonUI from '../components/common/SkeletonUI.vue';
+import ErrorUI from '../components/common/ErrorUI.vue';
 
-defineEmits(["pointerenter", "pointerleave"]);
+defineEmits(['pointerenter', 'pointerleave']);
 
 const productStore = useProductStore();
 const countProductStore = useCountProductStore();
@@ -33,8 +33,8 @@ const { countProduct } = storeToRefs(countProductStore);
 
 const category = computed(() =>
   isAvailableProduct.value
-    ? product.value?.category.split("'s ").join("-")
-    : "unvailable-product"
+    ? product.value?.category.split("'s ").join('-')
+    : 'unvailable-product'
 );
 const isActiveCart = computed(() =>
   cartProducts.value?.some(
@@ -44,7 +44,7 @@ const isActiveCart = computed(() =>
 
 onBeforeMount(() => {
   const id = route.params.id ? route.params.id : countProduct.value;
-  if (route.params.id) countProductStore.updateCountByParamsId(id);
+  if (route.params.id) countProductStore.updateCountByParamsId(Number(id));
 
   productStore.getProductByCount(id);
   productStore.setBackgroundProduct(category);
@@ -125,6 +125,7 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
         <WrapperButton :opsi="2">
           <template #button-opsi-1>
             <ButtonAction
+              data-test-id="add-to-cart"
               :handlerEvent="addProductToCart"
               :isActiveCart="isActiveCart"
               iconName="ShoppingCart"
@@ -138,12 +139,12 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
 
             <div class="product__group group__gap product__group-mobile">
               <ButtonPagnation
-                data-test-id="previous-product"
+                data-test-id="previous-product-mobile"
                 :pagnationEvent="pagnationPreviousProduct"
                 iconName="ArrowLeft2"
               />
               <ButtonPagnation
-                data-test-id="next-product"
+                data-test-id="next-product-mobile"
                 :pagnationEvent="pagnationNextProduct"
                 iconName="ArrowRight2"
               />
@@ -244,16 +245,13 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
     height: 24px;
   }
 
-  .product__category {
-    display: block;
-    width: 50%;
-    background: transparent;
+  .product__desc {
+    font-size: var(--fs-text-lg);
+    line-height: 30px;
   }
+}
 
-  .product__category h3 {
-    color: var(--primary-purple);
-  }
-
+@media screen and (min-width: 1250px) {
   .product__price-mobile,
   .product__group.product__group-mobile {
     display: none;
@@ -262,6 +260,16 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
   .product__breadcrumbs {
     display: block;
     margin-bottom: 1em;
+  }
+
+  .product__category {
+    display: block;
+    width: 50%;
+    background: transparent;
+  }
+
+  .product__category h3 {
+    color: var(--primary-purple);
   }
 
   .product__price-desktop {
@@ -279,11 +287,6 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
     text-align: center;
     line-height: 44px;
     color: var(--primary-purple);
-  }
-
-  .product__desc {
-    font-size: var(--fs-text-lg);
-    line-height: 30px;
   }
 }
 

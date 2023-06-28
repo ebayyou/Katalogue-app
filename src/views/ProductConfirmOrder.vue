@@ -1,21 +1,21 @@
 <script setup>
-import { ref, onBeforeMount } from "vue";
-import { computed } from "vue";
-import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
-import useProductStore from "../stores/product";
-import { getFormattedDate, getRandomNumber } from "../utils";
-import ButtonLinkTo from "../components/common/button/ButtonLinkTo.vue";
-import ButtonAction from "../components/common/button/ButtonAction.vue";
-import BillItem from "../components/common/product/BillItem.vue";
-import ProductConfirmItem from "../components/common/product/ProductConfirmItem.vue";
-import ProductConfirmListItem from "../components/common/product/ProductConfirmListItem.vue";
-import ProductNothingInCart from "../components/common/product/ProductNothingInCart.vue";
-import LayoutProductShopping from "../components/layout/LayoutProductShopping.vue";
+import { ref, onBeforeMount } from 'vue';
+import { computed } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
+import useProductStore from '../stores/product';
+import { getFormattedDate, getRandomNumber } from '../utils';
+import ButtonLinkTo from '../components/common/button/ButtonLinkTo.vue';
+import ButtonAction from '../components/common/button/ButtonAction.vue';
+import BillItem from '../components/common/product/BillItem.vue';
+import ProductConfirmItem from '../components/common/product/ProductConfirmItem.vue';
+import ProductConfirmListItem from '../components/common/product/ProductConfirmListItem.vue';
+import ProductNothingInCart from '../components/common/product/ProductNothingInCart.vue';
+import LayoutProductShopping from '../components/layout/LayoutProductShopping.vue';
 
-defineEmits(["pointerenter", "pointerleave"]);
+defineEmits(['pointerenter', 'pointerleave']);
 
-const currentDate = ref("");
+const currentDate = ref('');
 const idOrder = ref(0);
 const taxes = ref(10);
 const items = ref(0);
@@ -55,7 +55,7 @@ const calculateTotalAmount = () => {
 
 const confirmOrder = () => {
   productStore.clearProductsCart();
-  router.push("/products/greetings");
+  router.push('/products/greetings');
 };
 </script>
 
@@ -109,6 +109,7 @@ const confirmOrder = () => {
     <template #button-group>
       <ButtonLinkTo to="/" action="Cancel" />
       <ButtonAction
+        data-test-id="confirm-order"
         :handlerEvent="confirmOrder"
         :disabled="nothingProductInCart"
         iconName="ReceiptItem"

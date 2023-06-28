@@ -5,7 +5,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="confirm__wrapper">
+  <div data-testid="confirm-list-item" class="confirm__wrapper">
     <div class="confirm__header-item">
       <h3 class="heading__text-gradient">{{ name }}</h3>
     </div>

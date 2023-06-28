@@ -1,6 +1,6 @@
 <script setup>
-import { ShoppingCart } from "vue-iconsax";
-import { RouterLink } from "vue-router";
+import { ShoppingCart } from 'vue-iconsax';
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import { RouterLink } from "vue-router";
       <img src="../../assets/Image/Logo Brand.svg" alt="logo-brand" />
     </RouterLink>
 
-    <RouterLink to="/products/cart-product" class="navigation__group">
+    <RouterLink to="/products/cart-product" class="navigation__cart">
       <ShoppingCart class="icon-cart" :size="24" type="bold" />
     </RouterLink>
   </nav>
@@ -25,7 +25,7 @@ import { RouterLink } from "vue-router";
   width: 125px;
 }
 
-.navigation__group {
+.navigation__cart {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +36,7 @@ import { RouterLink } from "vue-router";
   color: var(--white);
 }
 
-.navigation__group .icon-cart {
+.navigation__cart .icon-cart {
   color: var(--white);
 }
 
