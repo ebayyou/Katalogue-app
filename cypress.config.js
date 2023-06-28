@@ -1,16 +1,13 @@
-import { defineConfig } from "cypress";
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   e2e: {
-    specPattern: "cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}",
-    baseUrl: "http://localhost:4173",
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
+    specPattern: 'cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}',
     video: false,
   },
-  component: {
-    specPattern: "src/**/__tests__/*.{cy,spec}.{js,ts,jsx,tsx}",
-    devServer: {
-      framework: "vue",
-      bundler: "vite",
-    },
-  },
+  viewportWidth: 1440,
+  viewportHeight: 1024,
 });

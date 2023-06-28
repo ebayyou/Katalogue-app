@@ -1,7 +1,7 @@
-import { ref } from "vue";
-import { defineStore } from "pinia";
+import { ref } from 'vue';
+import { defineStore } from 'pinia';
 
-const useCountProductStore = defineStore("countProduct", () => {
+const useCountProductStore = defineStore('countProduct', () => {
   // state
   const countProduct = ref(1);
 

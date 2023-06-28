@@ -1,15 +1,15 @@
 <script setup>
-import { onMounted } from "vue";
-import { computed } from "vue";
-import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
-import useProductStore from "../stores/product";
-import ButtonAction from "../components/common/button/ButtonAction.vue";
-import ProductCartItem from "../components/common/product/ProductCartItem.vue";
-import ProductNothingInCart from "../components/common/product/ProductNothingInCart.vue";
-import LayoutProductShopping from "../components/layout/LayoutProductShopping.vue";
+import { onMounted } from 'vue';
+import { computed } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
+import useProductStore from '../stores/product';
+import ButtonAction from '../components/common/button/ButtonAction.vue';
+import ProductCartItem from '../components/common/product/ProductCartItem.vue';
+import ProductNothingInCart from '../components/common/product/ProductNothingInCart.vue';
+import LayoutProductShopping from '../components/layout/LayoutProductShopping.vue';
 
-defineEmits(["pointerenter", "pointerleave"]);
+defineEmits(['pointerenter', 'pointerleave']);
 
 const productStore = useProductStore();
 const router = useRouter();
@@ -23,7 +23,7 @@ const nothingProductInCart = computed(
 );
 
 const generateComfirmOrder = () => {
-  router.push("/products/confirm-order");
+  router.push('/products/confirm-order');
 };
 </script>
 
@@ -39,6 +39,7 @@ const generateComfirmOrder = () => {
 
     <template #button-group>
       <ButtonAction
+        data-test-id="buys-product"
         :handlerEvent="generateComfirmOrder"
         :disabled="nothingProductInCart"
         iconName="ReceiptItem"
