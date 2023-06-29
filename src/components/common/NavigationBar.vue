@@ -9,7 +9,7 @@ import { RouterLink } from 'vue-router';
       <img src="../../assets/Image/Logo Brand.svg" alt="logo-brand" />
     </RouterLink>
 
-    <RouterLink to="/products/cart-product" class="navigation__cart">
+    <RouterLink to="/product/cart-product" class="navigation__cart">
       <ShoppingCart class="icon-cart" :size="24" type="bold" />
     </RouterLink>
   </nav>

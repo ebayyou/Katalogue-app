@@ -23,7 +23,7 @@ const nothingProductInCart = computed(
 );
 
 const generateComfirmOrder = () => {
-  router.push('/products/confirm-order');
+  router.push('/product/confirm-order');
 };
 </script>
 
