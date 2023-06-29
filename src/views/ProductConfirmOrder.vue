@@ -55,13 +55,13 @@ const calculateTotalAmount = () => {
 
 const confirmOrder = () => {
   productStore.clearProductsCart();
-  router.push('/products/greetings');
+  router.push('/product/greetings');
 };
 </script>
 
 <template>
   <LayoutProductShopping
-    path="/products/cart-product"
+    path="/product/cart-product"
     :opsiButton="2"
     headingBarName="Order Summary"
   >

@@ -1,9 +1,9 @@
-import { ref } from "vue";
-import { defineStore } from "pinia";
-import API from "../utils/Api";
-import { changeProductIdToNumber, isProductInCart } from "../utils";
+import { ref } from 'vue';
+import { defineStore } from 'pinia';
+import API from '../utils/Api';
+import { changeProductIdToNumber, isProductInCart } from '../utils';
 
-const useProductStore = defineStore("product", () => {
+const useProductStore = defineStore('product', () => {
   // state
   const product = ref(null);
   const cartProducts = ref([]);
@@ -11,7 +11,7 @@ const useProductStore = defineStore("product", () => {
   const isLoading = ref(true);
   const isAvailableProduct = ref(false);
   const availableProduct = ref(["men's clothing", "women's clothing"]);
-  const backgroundProduct = ref("");
+  const backgroundProduct = ref('');
 
   // action
   const getProductByCount = async (count) => {
@@ -27,8 +27,8 @@ const useProductStore = defineStore("product", () => {
         isAvailableProduct.value = false;
       }
     } catch (error) {
-      console.error("Error get product:", error);
-      alert("There was an error get the product, Please refresh and try again");
+      console.error('Error get product:', error);
+      alert('There was an error get the product, Please refresh and try again');
     } finally {
       isLoading.value = false;
     }
@@ -69,9 +69,9 @@ const useProductStore = defineStore("product", () => {
         ...transformCarts
       );
     } catch (error) {
-      console.error("Error get product in cart:", error);
+      console.error('Error get product in cart:', error);
       alert(
-        "There was an error get the product to the cart. Please try again later (;"
+        'There was an error get the product to the cart. Please try again later (;'
       );
     }
   };
@@ -84,13 +84,13 @@ const useProductStore = defineStore("product", () => {
       );
 
       if (isProductInCart(quantityProducts.value, getIdProducts)) {
-        throw new Error("Product is already in the cart");
+        throw new Error('Product is already in the cart');
       }
 
       quantityProducts.value.push(...response.products);
-      alert("Successfully added product to cart.");
+      alert('Successfully added product to cart.');
     } catch (error) {
-      console.error("Error adding product to cart:", error);
+      console.error('Error adding product to cart:', error);
       alert(`Failed to add product to cart, ${error.message}`);
     }
   };
@@ -113,7 +113,7 @@ const useProductStore = defineStore("product", () => {
 
       quantityProducts.value = updateProductQuantity;
     } catch (error) {
-      console.error("Error update product in cart:", error);
+      console.error('Error update product in cart:', error);
     }
   };
 
@@ -135,7 +135,7 @@ const useProductStore = defineStore("product", () => {
       // update the product cart
       getCartProducts();
     } catch (error) {
-      console.error("Error delete product in cart:", error);
+      console.error('Error delete product in cart:', error);
     }
   };
 
