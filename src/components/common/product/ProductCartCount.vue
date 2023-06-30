@@ -1,8 +1,8 @@
 <script setup>
-import { ref, computed } from "vue";
-import { storeToRefs } from "pinia";
-import { Minus, Add, Trash } from "vue-iconsax";
-import useProductStore from "../../../stores/product";
+import { ref, computed } from 'vue';
+import { storeToRefs } from 'pinia';
+import { Minus, Add, Trash } from 'vue-iconsax';
+import useProductStore from '../../../stores/product';
 
 const productStore = useProductStore();
 const { quantityProducts } = storeToRefs(productStore);
@@ -22,7 +22,7 @@ const disabledMin = computed(() => count.value === 1);
 const disabledPlus = computed(() => count.value >= 20);
 
 const updateProductInCart = (type) => {
-  if (type === "plus") {
+  if (type === 'plus') {
     count.value += 1;
   } else {
     count.value -= 1;

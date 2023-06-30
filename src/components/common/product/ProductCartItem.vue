@@ -1,7 +1,7 @@
 <script setup>
-import { storeToRefs } from "pinia";
-import useProductStore from "../../../stores/product";
-import ProductCartCount from "./ProductCartCount.vue";
+import { storeToRefs } from 'pinia';
+import useProductStore from '../../../stores/product';
+import ProductCartCount from './ProductCartCount.vue';
 
 const productStore = useProductStore();
 const { cartProducts } = storeToRefs(productStore);
@@ -10,10 +10,15 @@ const { cartProducts } = storeToRefs(productStore);
 <template>
   <div v-for="cart in cartProducts" :key="cart.id" class="product__item__cart">
     <div class="product__group product__flex">
-      <img class="product__img" :src="cart.image" :alt="cart.title" />
+      <img
+        data-testId="test-product-img"
+        class="product__img"
+        :src="cart.image"
+        :alt="cart.title"
+      />
 
       <div class="product__info">
-        <h4>{{ cart.title }}</h4>
+        <h4 data-testId="test-product-title">{{ cart.title }}</h4>
 
         <div class="product__flex">
           <p class="price">${{ cart.price }}</p>

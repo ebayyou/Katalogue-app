@@ -116,7 +116,7 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
             <ProductReview :count="product.rating.count" />
           </div>
           <div class="product__category" :class="backgroundProduct.value">
-            <h3>{{ product.category }}</h3>
+            <h3 data-testid="test-render-category">{{ product.category }}</h3>
           </div>
           <p class="product__desc">{{ product.description }}</p>
           <p class="product__price-mobile">${{ product.price }}</p>

@@ -1,50 +1,61 @@
-// import { createPinia } from 'pinia';
-import { beforeEach, describe, it } from 'vitest';
+import { shallowMount } from '@vue/test-utils';
+import { createTestingPinia } from '@pinia/testing';
+import useProductStore from '../../stores/product';
 import ProductCartCount from '../common/product/ProductCartCount.vue';
-import { mount } from '@vue/test-utils';
 
 describe('unit testing ProductCartCount for cart product page', () => {
-  beforeEach(() => {});
+  let wrapper = null;
+  let productStore = null;
 
-  it.skip('user can delete product in cart', async () => {
-    mount(ProductCartCount, {
+  beforeEach(() => {
+    wrapper = shallowMount(ProductCartCount, {
+      global: {
+        plugins: [
+          createTestingPinia({
+            createSpy: vi.fn,
+            initialState: {
+              quantityProducts: [{ productId: 1, quantity: 2 }],
+              cartProducts: [
+                {
+                  productId: 'id-1',
+                  title:
+                    'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
+                  image:
+                    'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+                  price: 109.95,
+                  quantity: 2,
+                  isProductCart: true,
+                },
+              ],
+            },
+          }),
+        ],
+      },
       props: {
         productId: 'id-1',
       },
     });
 
-    // const buttonDeleteProduct = await screen.findByTestId('delete-product');
-
-    // await fireEvent.click(buttonDeleteProduct);
-
-    expect(buttonDeleteProduct.nodeName).toBe('BUTTON');
+    productStore = useProductStore();
   });
 
-  it.skip('user can update product to add quantity product', async () => {
-    mount(ProductCartCount, {
-      props: {
-        productId: 'id-1',
-      },
-    });
+  afterEach(() => wrapper.unmount());
 
-    // const buttonAddCount = await screen.findByTestId('add-count');
+  it('should calls the correct action when button delete product is clicked', () => {
+    wrapper.find('[data-testid="delete-product"]').trigger('click');
 
-    // await fireEvent.click(buttonAddCount);
-
-    expect(buttonAddCount.nodeName).toBe('BUTTON');
+    expect(productStore.deleteProductCart).toHaveBeenCalledTimes(1);
   });
 
-  it.skip('user can update product to remove quantity product', async () => {
-    mount(ProductCartCount, {
-      props: {
-        productId: 'id-1',
-      },
-    });
+  it('should calls the correct action when button add quantity product is clicked', () => {
+    wrapper.find('[data-testid="add-count"]').trigger('click');
 
-    // const buttonRemoveCount = await screen.findByTestId('remove-count');
+    expect(productStore.updateProductCart).toHaveBeenCalledTimes(1);
+  });
 
-    // await fireEvent.click(buttonRemoveCount);
+  it('should calls the correct action when button remove quantity product is clicked', () => {
+    wrapper.find('[data-testid="remove-count"]').trigger('click');
 
-    expect(buttonRemoveCount.nodeName).toBe('BUTTON');
+    expect(productStore.updateProductCart).toHaveBeenCalledTimes(1);
   });
 });
