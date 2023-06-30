@@ -102,7 +102,6 @@ describe('Product store test', () => {
     store.clearProductsCart();
 
     expect(store.quantityProducts.length).toEqual(0);
-    expect(store.quantityProducts.length).toEqual(0);
   });
 
   it('test setBackgroundProduct should return BackgroundProduct from category product', () => {
