@@ -41,20 +41,26 @@ describe('unit testing ProductCartCount for cart product page', () => {
 
   afterEach(() => wrapper.unmount());
 
-  it('should calls the correct action when button delete product is clicked', () => {
-    wrapper.find('[data-testid="delete-product"]').trigger('click');
+  it('should calls the correct action when button delete product is clicked', async () => {
+    const button = wrapper.find('[data-testid="delete-product"]');
+
+    await button.trigger('click');
 
     expect(productStore.deleteProductCart).toHaveBeenCalledTimes(1);
   });
 
-  it('should calls the correct action when button add quantity product is clicked', () => {
-    wrapper.find('[data-testid="add-count"]').trigger('click');
+  it('should calls the correct action when button add quantity product is clicked', async () => {
+    const button = wrapper.find('[data-testid="add-count"]');
+
+    await button.trigger('click');
 
     expect(productStore.updateProductCart).toHaveBeenCalledTimes(1);
   });
 
-  it('should calls the correct action when button remove quantity product is clicked', () => {
-    wrapper.find('[data-testid="remove-count"]').trigger('click');
+  it('should calls the correct action when button remove quantity product is clicked', async () => {
+    const button = wrapper.find('[data-testid="remove-count"]');
+
+    await button.trigger('click');
 
     expect(productStore.updateProductCart).toHaveBeenCalledTimes(1);
   });

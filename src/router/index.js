@@ -25,7 +25,7 @@ const router = createRouter({
       children: [
         {
           path: 'cart-product',
-          name: 'cart',
+          name: 'cart-product',
           component: ProductCartView,
         },
         {
