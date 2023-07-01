@@ -1,22 +1,24 @@
 <script setup>
-import { ref } from "vue";
-import { ArrowRight2 } from "vue-iconsax";
-import useProductStore from "../../stores/product";
+import { reactive } from 'vue';
+import { storeToRefs } from 'pinia';
+import { ArrowRight2 } from 'vue-iconsax';
+import useProductStore from '../../stores/product';
 
 const productStore = useProductStore();
+const { product } = storeToRefs(productStore);
 
-const breadcrumbs = ref([
+const breadcrumbs = reactive([
   {
     key: 1,
-    name: "Katalogue",
+    name: 'Katalogue',
   },
   {
     key: 2,
-    name: "Products",
+    name: 'Products',
   },
   {
     key: 3,
-    name: productStore.product?.category,
+    name: product.value?.category,
   },
 ]);
 </script>

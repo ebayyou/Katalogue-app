@@ -1,10 +1,10 @@
 <script setup>
-import ButtonPagnation from "../common/button/ButtonPagnation.vue";
+import ButtonPagnation from '../common/button/ButtonPagnation.vue';
 
 defineProps({
   type: {
     type: String,
-    default: "",
+    default: '',
   },
   pagnationNext: Function,
   pagnationPrevious: Function,
@@ -93,7 +93,11 @@ defineProps({
 
   .layout__product {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 90%;
+    height: 600px;
     margin: 0 auto;
     border-radius: var(--radius-md);
     box-shadow: var(--box-shadow-bg);
@@ -114,19 +118,13 @@ defineProps({
 
   .product__wrapper {
     margin: 1em auto;
+    flex-direction: row;
+    width: 80%;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .product__wrapper {
-    width: 80%;
-    flex-direction: row;
-  }
-
   .layout__product {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 1224px;
     height: 637px;
   }

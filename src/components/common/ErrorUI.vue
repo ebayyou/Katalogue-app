@@ -1,10 +1,10 @@
 <script setup>
-import { useRouter } from "vue-router";
-import useCountProductStore from "../../stores/countProduct";
-import useProductStore from "../../stores/product";
-import ButtonAction from "./button/ButtonAction.vue";
-import WrapperButton from "./button/WrapperButton.vue";
-import NavigationBar from "./NavigationBar.vue";
+import { useRouter } from 'vue-router';
+import useCountProductStore from '../../stores/countProduct';
+import useProductStore from '../../stores/product';
+import ButtonAction from './button/ButtonAction.vue';
+import WrapperButton from './button/WrapperButton.vue';
+import NavigationBar from './NavigationBar.vue';
 
 defineProps({
   errorCode: Number,
@@ -24,7 +24,7 @@ const goToNextProduct = () => {
 
 const refreshProduct = () => {
   countProductStore.clearCountProduct();
-  router.push({ name: "products" });
+  router.push({ name: 'product' });
   productStore.getProductByCount(countProductStore.countProduct);
 };
 </script>
@@ -42,7 +42,7 @@ const refreshProduct = () => {
           <p>{{ errorMsg }}</p>
         </div>
 
-        <WrapperButton :opsi="2" noBackground="noBackground">
+        <WrapperButton :opsi="2" classType="no-background">
           <template #button-opsi-1>
             <ButtonAction
               to="/"
@@ -87,7 +87,7 @@ const refreshProduct = () => {
 .error__background {
   width: 100%;
   height: 574px;
-  background: url("../../assets/Image/sad.svg") center;
+  background: url('../../assets/Image/sad.svg') center;
 }
 
 .error__group {
@@ -136,6 +136,8 @@ const refreshProduct = () => {
 @media screen and (min-width: 1250px) {
   .error__wrapper {
     position: unset;
+    z-index: var(--z-tooltip);
+    width: 80%;
   }
 
   .error__group {
@@ -149,10 +151,6 @@ const refreshProduct = () => {
 }
 
 @media screen and (min-width: 1440px) {
-  .error__wrapper {
-    width: 80%;
-  }
-
   .error__group {
     position: relative;
     width: 60%;
