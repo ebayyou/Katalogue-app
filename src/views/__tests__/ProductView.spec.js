@@ -78,29 +78,33 @@ describe('unit testing functionality in product view page', () => {
     expect(category.exists()).toBe(true);
     expect(description.exists()).toBe(true);
 
-    expect(title.text()).toMatch(
+    expect(title.text()).toBe(
       'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops'
     );
-    expect(image.attributes('src')).toMatch(
+    expect(image.attributes('src')).toBe(
       'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'
     );
-    expect(image.attributes('alt')).toMatch(
+    expect(image.attributes('alt')).toBe(
       'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops'
     );
-    expect(category.text()).toMatch("men's clothing");
-    expect(description.text()).toMatch(
+    expect(category.text()).toBe("men's clothing");
+    expect(description.text()).toBe(
       'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday'
     );
   });
 
   it('should calls the correct action when button add to cart is clicked', async () => {
-    wrapper.find('[data-testid="add-to-cart"]').trigger('click');
+    const button = wrapper.find('[data-testid="add-to-cart"]');
+
+    button.trigger('click');
 
     expect(productStore.addToCart).toHaveBeenCalledTimes(1);
   });
 
   it('should calls the correct action when button pagnation previous product is clicked', async () => {
-    wrapper.find('[data-testid="previous-product"]').trigger('click');
+    const button = wrapper.find('[data-testid="previous-product"]');
+
+    await button.trigger('click');
 
     expect(countProductStore.previousProductCount).toHaveBeenCalledTimes(1);
 
@@ -111,7 +115,9 @@ describe('unit testing functionality in product view page', () => {
   });
 
   it('should calls the correct action when button pagnation next product is clicked', async () => {
-    wrapper.find('[data-testid="next-product"]').trigger('click');
+    const button = wrapper.find('[data-testid="next-product"]');
+
+    await button.trigger('click');
 
     expect(countProductStore.nextProductCount).toHaveBeenCalledTimes(1);
 

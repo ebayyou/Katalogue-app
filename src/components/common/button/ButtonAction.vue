@@ -23,7 +23,7 @@ const props = defineProps({
 <template>
   <button
     type="button"
-    :data-testId="dataTestId"
+    :data-testid="dataTestId"
     :class="iconName ? 'button__action' : 'button__linkto'"
     @click="handlerEvent"
     :disabled="disabled"
@@ -35,6 +35,6 @@ const props = defineProps({
       :color="disabled ? '#323032' : '#ffffff'"
       :type="isActiveCart ? 'bold' : 'linear'"
     />
-    <h5>{{ action }}</h5>
+    <h5 data-testid="button-action-text">{{ action }}</h5>
   </button>
 </template>

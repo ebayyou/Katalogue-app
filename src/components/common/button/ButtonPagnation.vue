@@ -16,6 +16,7 @@ defineProps({
   <button
     type="button"
     :data-testid="dataTestId"
+    :title="dataTestId"
     @click="pagnationEvent"
     class="button__pagnation"
     :class="iconName === 'ArrowLeft2' ? 'pagnation-left' : 'pagnation-right'"
