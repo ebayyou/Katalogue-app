@@ -51,11 +51,17 @@ const generateComfirmOrder = () => {
 
 <style>
 .product__wrapper-list {
-  margin: 3em 0 7em;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 1.2em;
+  height: 65vh;
+  margin: 2em 0 3em;
+  overflow-y: scroll;
+}
+
+.product__wrapper-list::-webkit-scrollbar {
+  width: 0;
 }
 
 @media screen and (min-width: 600px) {
@@ -65,20 +71,11 @@ const generateComfirmOrder = () => {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1250px) {
   .product__wrapper-list {
     width: 100%;
-    margin: 3em 0 12em;
-    overflow-y: scroll;
-  }
-
-  .product__wrapper-list::-webkit-scrollbar {
-    width: 0;
-  }
-}
-@media screen and (min-width: 1440px) {
-  .product__wrapper-list {
-    height: 80vh;
+    height: 75vh;
+    margin: 3em 0;
   }
 }
 </style>

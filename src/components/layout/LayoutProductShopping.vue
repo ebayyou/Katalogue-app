@@ -1,6 +1,6 @@
 <script setup>
-import ApplicationBar from "../common/ApplicationBar.vue";
-import WrapperButton from "../common/button/WrapperButton.vue";
+import ApplicationBar from '../common/ApplicationBar.vue';
+import WrapperButton from '../common/button/WrapperButton.vue';
 
 defineProps({
   opsiButton: Number,
@@ -25,7 +25,7 @@ defineProps({
 
       <slot name="product-shopping-content"></slot>
 
-      <WrapperButton :opsi="opsiButton">
+      <WrapperButton :opsi="opsiButton" classType="absolute">
         <template #button-opsi-1>
           <slot name="button-group"></slot>
         </template>

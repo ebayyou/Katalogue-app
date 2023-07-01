@@ -1,6 +1,6 @@
 <script setup>
-import LayoutProduct from "../layout/LayoutProduct.vue";
-import WrapperButton from "./button/WrapperButton.vue";
+import LayoutProduct from '../layout/LayoutProduct.vue';
+import WrapperButton from './button/WrapperButton.vue';
 </script>
 
 <template>
@@ -155,8 +155,14 @@ import WrapperButton from "./button/WrapperButton.vue";
 
 @media (min-width: 1024px) {
   .left-product {
-    width: 350px;
-    height: 500px;
+    width: 35%;
+    height: 450px;
+  }
+
+  .right-product {
+    position: relative;
+    width: 65%;
+    height: 457px;
   }
 
   .skeleton__image {
@@ -211,19 +217,6 @@ import WrapperButton from "./button/WrapperButton.vue";
   .skeleton__desc.desc_3 {
     width: 93px;
     height: 30px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .left-product {
-    width: 35%;
-    height: 450px;
-  }
-
-  .right-product {
-    position: relative;
-    width: 65%;
-    height: 457px;
   }
 }
 </style>

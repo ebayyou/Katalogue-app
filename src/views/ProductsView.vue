@@ -249,17 +249,36 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
     font-size: var(--fs-text-lg);
     line-height: 30px;
   }
-}
 
-@media screen and (min-width: 1250px) {
-  .product__price-mobile,
-  .product__group.product__group-mobile {
-    display: none;
+  .product__category {
+    width: 220px;
   }
 
   .product__breadcrumbs {
     display: block;
     margin-bottom: 1em;
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  .left-product {
+    width: 35%;
+    height: 100%;
+  }
+
+  .right-product {
+    position: relative;
+    width: 65%;
+    height: 457px;
+  }
+
+  .product__img {
+    max-width: 100%;
+  }
+
+  .product__price-mobile,
+  .product__group.product__group-mobile {
+    display: none;
   }
 
   .product__category {
@@ -287,23 +306,6 @@ const addProductToCart = () => productStore.addToCart(product.value?.id, 1);
     text-align: center;
     line-height: 44px;
     color: var(--primary-purple);
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .product__img {
-    max-width: 100%;
-  }
-
-  .left-product {
-    width: 35%;
-    height: 100%;
-  }
-
-  .right-product {
-    position: relative;
-    width: 65%;
-    height: 457px;
   }
 
   .product__desc {

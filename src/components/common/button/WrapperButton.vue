@@ -4,14 +4,18 @@ defineProps({
     type: Number,
     default: 2,
   },
-  noBackground: String,
+  classType: String,
 });
 </script>
 
 <template>
   <div
     class="wrapper__button"
-    :class="(opsi === 1 ? 'opsi-1' : 'opsi-2', noBackground)"
+    :class="{
+      'opsi-1': opsi === 1,
+      'opsi-2': opsi === 2,
+      [classType]: classType,
+    }"
   >
     <div class="button__group" :class="opsi === 1 ? 'opsi-1' : 'opsi-2'">
       <slot name="button-opsi-1"></slot>
@@ -65,7 +69,7 @@ defineProps({
     height: 65px;
     margin-top: 2em;
   }
-  .wrapper__button.opsi-1 {
+  .absolute {
     position: absolute;
   }
 
@@ -78,7 +82,7 @@ defineProps({
     gap: 1.5em;
   }
 
-  .noBackground {
+  .no-background {
     background-color: transparent;
     border-top: none;
   }
