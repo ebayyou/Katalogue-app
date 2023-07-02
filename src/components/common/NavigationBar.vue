@@ -6,7 +6,7 @@ import { RouterLink } from 'vue-router';
 <template>
   <nav class="navigation">
     <RouterLink to="/" class="navigation__brand">
-      <img src="../../assets/Image/Logo Brand.svg" alt="logo-brand" />
+      <img src="../../assets/Image/Logo_Brand.svg" alt="logo-brand" />
     </RouterLink>
 
     <RouterLink to="/product/cart-product" class="navigation__cart">

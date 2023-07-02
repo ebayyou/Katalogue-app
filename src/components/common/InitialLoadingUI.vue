@@ -6,7 +6,7 @@
       <div class="loading__group">
         <img
           class="loading__logo"
-          src="../../assets/Image/Logo Brand.svg"
+          src="../../assets/Image/Logo_Brand.svg"
           alt="logo-brand"
         />
         <div class="loading__bar">

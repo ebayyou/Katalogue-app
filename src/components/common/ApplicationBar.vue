@@ -1,12 +1,12 @@
 <script setup>
-import { ArrowLeft2 } from "vue-iconsax";
-import { RouterLink } from "vue-router";
+import { ArrowLeft2 } from 'vue-iconsax';
+import { RouterLink } from 'vue-router';
 
 defineProps({
   name: String,
   path: {
     type: String,
-    default: "/",
+    default: '/',
   },
   withLogo: {
     type: Boolean,
@@ -24,7 +24,7 @@ defineProps({
     <img
       v-if="withLogo"
       class="bar__logo"
-      src="../../assets/Image/Logo Brand.svg"
+      src="../../assets/Image/Logo_Brand.svg"
       alt="logo-brand"
     />
     <h2 v-else class="heading__text-gradient">{{ name }}</h2>
