@@ -19,7 +19,7 @@ jobs:
     
     - name: Build and test vue app
       run: |
-        docker-compose up -d --build
+        docker-compose up --build
         docker-compose exec app npm run test:unit
       
     - name: Run cypress test
