@@ -1,0 +1,30 @@
+name: Vue CI with Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Build and test vue app
+      run: |
+        docker-compose up -d --build
+        docker-compose exec app npm run test:unit
+      
+    - name: Run cypress test
+      run: |
+        docker-compose exec app npm run test:e2e
+        
+    - name: Build and push docker image
+      run: |
+        echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --pasword-stdin
+        docker-compose build
+        docker tag katalogue-app-katalogue-app:latest ${{ secrets.DOCKER_USERNAME }}/katalogue-app-katalogue-app:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/katalogue-app-katalogue-app:latest
