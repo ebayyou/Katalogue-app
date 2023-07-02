@@ -1,35 +1,122 @@
-@import './base.css';
+@import "./base.css";
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-
+  padding: 1rem;
   font-weight: normal;
+}
+
+button:disabled {
+  background: var(--neutral-light-blue);
+}
+
+button:disabled h5 {
+  color: var(--neutral-black);
 }
 
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: var(--primary-purple);
   transition: 0.4s;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+button:hover,
+a:hover {
+  background-color: var(--primary-pink);
+}
+
+.men-clothing {
+  background: var(--gradient-men);
+}
+.women-clothing {
+  background: var(--gradient-women);
+}
+
+.heading__text-gradient {
+  font-style: normal;
+  font-weight: var(--font-semi-bold);
+  text-transform: capitalize;
+  line-height: 33px;
+  background: var(--gradient-logo);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.button__action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.95em;
+  width: 170px;
+  height: 45px;
+  background-color: var(--primary-purple);
+  border-radius: 35px;
+}
+
+.button__action h5 {
+  font-style: normal;
+  font-weight: var(--font-reguler);
+  font-size: var(--fs-text-md);
+  line-height: 24px;
+  color: var(--white);
+}
+
+.button__linkto {
+  display: block;
+  width: 145px;
+  height: 44px;
+  border: 2px solid var(--primary-purple);
+  border-radius: var(--radius-circle);
+}
+
+.button__linkto h5 {
+  font-style: normal;
+  font-weight: var(--font-semi-bold);
+  font-size: var(--fs-text-lg);
+  text-align: center;
+  line-height: 40px;
+  color: var(--primary-purple);
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #d5e3e560;
+  }
+  100% {
+    background-color: var(--neutral-light-blue);
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
+@media screen and (min-width: 600px) {
+  .button__action {
+    width: 190px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .button__action {
+    width: 200px;
   }
 
   #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  .men-clothing-lg {
+    background: var(--gradient-men);
+  }
+  .women-clothing-lg {
+    background: var(--gradient-women);
+  }
+  .unvailable-product-lg {
+    background: var(--gradient-404);
+  }
+  .undefined-lg {
+    background: var(--gradient-404);
   }
 }
