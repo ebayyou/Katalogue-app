@@ -6,9 +6,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:unit": "vitest",
     "vitest:ui": "vitest --ui",
-    "test:e2e": "start-server-and-test preview http://localhost:4173 'cypress run --e2e'",
+    "test:unit": "start-server-and-test start http://localhost:4173 'npx vitest --no-watch' ",
+    "test:e2e": "start-server-and-test start http://localhost:4173 'npx cypress run'",
     "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' http://localhost:4173 'cypress open --e2e'",
     "cypress:open": "cypress open",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
