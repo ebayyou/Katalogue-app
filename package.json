@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "@pinia/testing": "^0.1.2",
-    "@testing-library/vue": "^7.0.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitest/ui": "^0.32.2",
     "@vue/test-utils": "^2.2.7",
