@@ -1,4 +1,4 @@
-![Design preview for the Results summary component Katalogue App](./public/Thumbnail.png);
+![Design preview for the Results summary component Katalogue App](./public/Thumbnail.png)
 
 # Build Katalogue APPs
 
@@ -14,7 +14,7 @@ Katalogue-app is a platform for a collection of electronics, clothing, jewelry p
 
 - APP : [Katalogue App](https://katalogue-app.web.app/)
 - API Public : [Fakestoreapi](https://fakestoreapi.com/docs)
-- See Design Katalogue APP : [Design Katalogue App](ttps://www.figma.com/community/file/1257129954134861095)
+- See Design Katalogue APP : [Design Katalogue App](https://www.figma.com/community/file/1257129954134861095)
 
 ---
 
