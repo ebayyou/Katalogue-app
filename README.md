@@ -1,57 +1,29 @@
-# Katalogue-app
+![Design preview for the Results summary component Katalogue App](./public/Thumbnail.png);
 
-This template should help get you started developing with Vue 3 in Vite.
+# Build Katalogue APPs
 
-## Recommended IDE Setup
+Katalogue-app is a platform for a collection of electronics, clothing, jewelry product, etc.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+<br />
+<img align="left" alt="version" src="https://img.shields.io/static/v1?label=Katalogue&message=v.0.1.0&color=#fff" />
+<br />
 
-## Customize configuration
+---
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Creadits
 
-## Project Setup
+- APP : [Katalogue App](https://katalogue-app.web.app/)
+- API Public : [Fakestoreapi](https://fakestoreapi.com/docs)
+- See Design Katalogue APP : [Design Katalogue App](ttps://www.figma.com/community/file/1257129954134861095)
 
-```sh
-npm install
-```
+---
 
-### Compile and Hot-Reload for Development
+## Tech Stack
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Headed Component Tests with [Cypress Component Testing](https://on.cypress.io/component)
-
-```sh
-npm run test:unit:dev # or `npm run test:unit` for headless testing
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+<img align="left" alt="html5" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+<img align="left" alt="css3" src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+<img align="left" alt="javascript" src="https://img.shields.io/badge/javascript%20-F5E015.svg?&style=for-the-badge&logo=javascript&logoColor=black" /> 
+<img align="left" alt="vue js" src="https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D" /> 
+<img align="left" alt="vite" src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white" /> 
+<img align="left" src="https://img.shields.io/badge/docker-1572B6?style=for-the-badge&logo=Docker&logoColor=2496ED" alt="docker" />
+<img src="https://img.shields.io/badge/Firebase-FFFA44?style=for-the-badge&logo=Firebase&logoColor=FFCA28" alt="Firebase" />
